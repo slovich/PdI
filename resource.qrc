@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>resource/img/default_img.png</file>
+        <file>resource/img/off_ico.png</file>
+        <file>resource/img/on_ico.png</file>
+        <file>resource/img/search_ico.png</file>
+        <file>resource/img/aritimetico.png</file>
+        <file>resource/img/quantizacao.png</file>
+        <file>resource/img/ico_mainwindow.ico</file>
+    </qresource>
+</RCC>

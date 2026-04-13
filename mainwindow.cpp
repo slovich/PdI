@@ -300,11 +300,13 @@ void MainWindow::on_pushButton_voltar_clicked()
 
 void MainWindow::on_actionQuantizacao_2_triggered()
 {
+     setDefaultImages();
     ui->stackedWidget->setCurrentIndex(0);
 }
 
 void MainWindow::on_actionAritimetica_triggered()
 {
+    setDefaultImages();
     ui->stackedWidget->setCurrentIndex(4);
 }
 void MainWindow::on_radioButton_clicked()

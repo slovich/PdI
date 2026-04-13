@@ -65,10 +65,10 @@
      <widget class="QLabel" name="label_imagem_modificada">
       <property name="geometry">
        <rect>
-        <x>440</x>
+        <x>390</x>
         <y>120</y>
-        <width>250</width>
-        <height>250</height>
+        <width>360</width>
+        <height>360</height>
        </rect>
       </property>
       <property name="text">
@@ -86,8 +86,8 @@
        <rect>
         <x>10</x>
         <y>120</y>
-        <width>250</width>
-        <height>250</height>
+        <width>360</width>
+        <height>360</height>
        </rect>
       </property>
       <property name="maximumSize">
@@ -109,9 +109,9 @@
      <widget class="QPushButton" name="pushButton_aplicar">
       <property name="geometry">
        <rect>
-        <x>440</x>
+        <x>390</x>
         <y>80</y>
-        <width>250</width>
+        <width>360</width>
         <height>24</height>
        </rect>
       </property>
@@ -124,7 +124,7 @@
        <rect>
         <x>10</x>
         <y>80</y>
-        <width>250</width>
+        <width>360</width>
         <height>24</height>
        </rect>
       </property>
@@ -593,7 +593,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:700; color:#ff0000;&quot;&gt;PdI&lt;/span&gt;&lt;span style=&quot; font-size:22pt; font-weight:700;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Processamento de Imagens&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:700; color:#ff0000;&quot;&gt;PdI&lt;/span&gt;&lt;span style=&quot; font-size:22pt; font-weight:700;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Processamento de Imagens 1.1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
      <widget class="QTextEdit" name="textEdit">
@@ -686,7 +686,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <property name="title">
        <string>Operação</string>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -771,93 +771,151 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <property name="title">
        <string>Imagens</string>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QLabel" name="label_imagem_principal">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>40</y>
-         <width>711</width>
-         <height>231</height>
+         <x>60</x>
+         <y>30</y>
+         <width>101</width>
+         <height>16</height>
         </rect>
        </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <widget class="QLabel" name="label_imagem_1">
-          <property name="maximumSize">
-           <size>
-            <width>200</width>
-            <height>200</height>
-           </size>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="pixmap">
-           <pixmap resource="resource.qrc">:/img/resource/img/default_img.png</pixmap>
-          </property>
-          <property name="scaledContents">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_imagem_2">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>200</width>
-            <height>200</height>
-           </size>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="pixmap">
-           <pixmap resource="resource.qrc">:/img/resource/img/default_img.png</pixmap>
-          </property>
-          <property name="scaledContents">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_imagem_3">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>200</width>
-            <height>200</height>
-           </size>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="pixmap">
-           <pixmap resource="resource.qrc">:/img/resource/img/default_img.png</pixmap>
-          </property>
-          <property name="scaledContents">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <property name="text">
+        <string>Imagem Original</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_imagem_adicional">
+       <property name="geometry">
+        <rect>
+         <x>320</x>
+         <y>30</y>
+         <width>101</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Imagem Adicional</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_imagem_resultado">
+       <property name="geometry">
+        <rect>
+         <x>580</x>
+         <y>30</y>
+         <width>111</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Imagem Resultado</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_imagem_1">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>200</width>
+         <height>200</height>
+        </rect>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>200</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="resource.qrc">:/img/resource/img/default_img.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_imagem_2">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>270</x>
+         <y>50</y>
+         <width>200</width>
+         <height>200</height>
+        </rect>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>200</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="resource.qrc">:/img/resource/img/default_img.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_imagem_3">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>530</x>
+         <y>50</y>
+         <width>200</width>
+         <height>200</height>
+        </rect>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>200</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="resource.qrc">:/img/resource/img/default_img.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
       </widget>
      </widget>
      <widget class="QPushButton" name="pushButton">
       <property name="geometry">
        <rect>
-        <x>290</x>
+        <x>320</x>
         <y>170</y>
-        <width>171</width>
+        <width>121</width>
         <height>24</height>
        </rect>
       </property>
       <property name="text">
        <string>Procurar imagem</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_calcular">
+      <property name="geometry">
+       <rect>
+        <x>570</x>
+        <y>170</y>
+        <width>121</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Calcular</string>
       </property>
      </widget>
     </widget>
@@ -872,9 +930,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </rect>
       </property>
       <property name="title">
-       <string>Imagem 1</string>
+       <string>Imagem Principal</string>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>300</x>
@@ -896,7 +954,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -942,7 +1000,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </rect>
       </property>
       <property name="title">
-       <string>Imagem 2</string>
+       <string>Imagem Adicional</string>
       </property>
       <widget class="QWidget" name="layoutWidget_2">
        <property name="geometry">

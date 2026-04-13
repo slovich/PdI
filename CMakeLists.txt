@@ -28,6 +28,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         quantizacao.cpp quantizacao.cpp
         quantizacao.h
         ${APP_ICON_RESOURCE}
+        aritmetica.h aritmetica.cpp
     )
 
 

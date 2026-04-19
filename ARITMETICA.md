@@ -1,4 +1,5 @@
 A Classe Aritmética
+
 Dependência  
 A classe Aritmética depende do framework Qt e utiliza QImage para manipulação direta de pixels. Ela foi projetada para operações aritméticas entre imagens e sobre imagens (soma, subtração, multiplicação e divisão), mantendo coerência com o padrão das demais classes do projeto.
 

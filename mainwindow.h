@@ -52,7 +52,9 @@ private slots:
     void on_pushButton_calcular_clicked();
     void setDefaultImages();
     void on_pushButton_selecionar_imagem_geometrica_clicked();
+    void on_pushButton__rotacionar_imagem_geometrica_clicked();
 
+    void on_pushButton_manter_alteracao_clicked();
 
 private:
     Ui::MainWindow *ui;

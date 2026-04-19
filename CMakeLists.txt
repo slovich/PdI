@@ -29,6 +29,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         quantizacao.h
         ${APP_ICON_RESOURCE}
         aritmetica.h aritmetica.cpp
+        transformacaogeometrica.h transformacaogeometrica.cpp
     )
 
 

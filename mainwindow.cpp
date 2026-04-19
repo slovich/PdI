@@ -2,6 +2,7 @@
 #include "./ui_mainwindow.h"
 #include "aritmetica.h"
 #include "quantizacao.h"
+#include "transformacaogeometrica.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -620,5 +621,38 @@ void MainWindow::on_pushButton_selecionar_imagem_geometrica_clicked()
                              "Arquivo inválido",
                              "Selecione um arquivo de imagem válido (jpg, jpeg, png, bmp, tiff).");
     }
+}
+
+
+void MainWindow::on_pushButton__rotacionar_imagem_geometrica_clicked()
+{
+    // Verifica se há imagem original carregada
+    QPixmap pixmap = ui->label_imagem_tg_original->pixmap();
+    if (!pixmap || pixmap.isNull()) {
+        QMessageBox::warning(this,
+                             "Imagem não selecionada",
+                             "Selecione uma imagem válida antes de aplicar o algoritmo.");
+        return;
+    }
+    // Converte para QImage
+    QImage imagem_original = pixmap.toImage();
+    // Lê o valor em graus em que a imagem deve ser rotacionada
+    int graus_rotacao = ui->lineEdit_graus->text().toInt();
+    // Cria objeto Transformação de Geométrica
+    TransformacaoGeometrica *tg = new TransformacaoGeometrica;
+    //Aplica a rotação na imagem
+    QImage resultado = tg->rotacionar(imagem_original, graus_rotacao);
+    // Exibe resultado no label da imagem processada
+    ui->label_imagem_tg_modificada->setPixmap(
+        QPixmap::fromImage(resultado).scaled(ui->label_imagem_tg_modificada->size(),
+                                             Qt::KeepAspectRatio,
+                                             Qt::SmoothTransformation));
+    ui->label_imagem_tg_modificada->setScaledContents(false);
+}
+
+
+void MainWindow::on_pushButton_manter_alteracao_clicked()
+{
+    ui->label_imagem_tg_original->setPixmap(ui->label_imagem_tg_modificada->pixmap());
 }
 

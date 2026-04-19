@@ -656,3 +656,53 @@ void MainWindow::on_pushButton_manter_alteracao_clicked()
     ui->label_imagem_tg_original->setPixmap(ui->label_imagem_tg_modificada->pixmap());
 }
 
+
+void MainWindow::on_pushButton_espelhamento_vertical_clicked()
+{
+    // Verifica se há imagem original carregada
+    QPixmap pixmap = ui->label_imagem_tg_original->pixmap();
+    if (!pixmap || pixmap.isNull()) {
+        QMessageBox::warning(this,
+                             "Imagem não selecionada",
+                             "Selecione uma imagem válida antes de aplicar o algoritmo.");
+        return;
+    }
+    // Converte para QImage
+    QImage imagem_original = pixmap.toImage();
+    // Cria objeto Transformação de Geométrica
+    TransformacaoGeometrica *tg = new TransformacaoGeometrica;
+    //Aplica o espelhamento vertical na imagem
+    QImage resultado = tg->espelharVertical(imagem_original);
+    // Exibe resultado no label da imagem processada
+    ui->label_imagem_tg_modificada->setPixmap(
+        QPixmap::fromImage(resultado).scaled(ui->label_imagem_tg_modificada->size(),
+                                             Qt::KeepAspectRatio,
+                                             Qt::SmoothTransformation));
+    ui->label_imagem_tg_modificada->setScaledContents(false);
+}
+
+
+void MainWindow::on_pushButton_espelhamento_horizontal_clicked()
+{
+    // Verifica se há imagem original carregada
+    QPixmap pixmap = ui->label_imagem_tg_original->pixmap();
+    if (!pixmap || pixmap.isNull()) {
+        QMessageBox::warning(this,
+                             "Imagem não selecionada",
+                             "Selecione uma imagem válida antes de aplicar o algoritmo.");
+        return;
+    }
+    // Converte para QImage
+    QImage imagem_original = pixmap.toImage();
+    // Cria objeto Transformação de Geométrica
+    TransformacaoGeometrica *tg = new TransformacaoGeometrica;
+    //Aplica o espelhamento vertical na imagem
+    QImage resultado = tg->espelharHorizontal(imagem_original);
+    // Exibe resultado no label da imagem processada
+    ui->label_imagem_tg_modificada->setPixmap(
+        QPixmap::fromImage(resultado).scaled(ui->label_imagem_tg_modificada->size(),
+                                             Qt::KeepAspectRatio,
+                                             Qt::SmoothTransformation));
+    ui->label_imagem_tg_modificada->setScaledContents(false);
+}
+

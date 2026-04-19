@@ -52,3 +52,39 @@ QImage TransformacaoGeometrica::rotacionar(const QImage &imagem, double graus)
 
     return resultado;
 }
+
+QImage TransformacaoGeometrica::espelharVertical(const QImage &imagem)
+{
+    QImage resultado(imagem.size(), imagem.format());
+
+    int w = imagem.width();
+    int h = imagem.height();
+
+    for (int y = 0; y < h; ++y) {
+        const QRgb *linhaOrig = reinterpret_cast<const QRgb *>(imagem.scanLine(y));
+        QRgb *linhaDest = reinterpret_cast<QRgb *>(resultado.scanLine(h - 1 - y));
+        for (int x = 0; x < w; ++x) {
+            linhaDest[x] = linhaOrig[x];
+        }
+    }
+
+    return resultado;
+}
+
+QImage TransformacaoGeometrica::espelharHorizontal(const QImage &imagem)
+{
+    QImage resultado(imagem.size(), imagem.format());
+
+    int w = imagem.width();
+    int h = imagem.height();
+
+    for (int y = 0; y < h; ++y) {
+        const QRgb *linhaOrig = reinterpret_cast<const QRgb *>(imagem.scanLine(y));
+        QRgb *linhaDest = reinterpret_cast<QRgb *>(resultado.scanLine(y));
+        for (int x = 0; x < w; ++x) {
+            linhaDest[w - 1 - x] = linhaOrig[x];
+        }
+    }
+
+    return resultado;
+}

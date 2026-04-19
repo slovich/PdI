@@ -88,3 +88,68 @@ QImage TransformacaoGeometrica::espelharHorizontal(const QImage &imagem)
 
     return resultado;
 }
+
+QImage TransformacaoGeometrica::transladarVertical(const QImage &imagem, int percentual)
+{
+    // Garante que o percentual esteja dentro do intervalo [-100, 100]
+    if (percentual > 100) percentual = 100;
+    if (percentual < -100) percentual = -100;
+
+    int w = imagem.width();
+    int h = imagem.height();
+
+    // Calcula o deslocamento em pixels
+    int deslocamento = (percentual * h) / 100;
+
+    // Cria imagem de saída com mesmas dimensões
+    QImage resultado(w, h, imagem.format());
+    resultado.fill(Qt::transparent);
+
+    // Copia os pixels com deslocamento
+    for (int y = 0; y < h; ++y) {
+        const QRgb *linhaOrig = reinterpret_cast<const QRgb *>(imagem.scanLine(y));
+        int yDestino = y - deslocamento;
+
+        if (yDestino >= 0 && yDestino < h) {
+            QRgb *linhaDest = reinterpret_cast<QRgb *>(resultado.scanLine(yDestino));
+            for (int x = 0; x < w; ++x) {
+                linhaDest[x] = linhaOrig[x];
+            }
+        }
+        // Pixels que saem fora do intervalo [0, h) são descartados
+    }
+    return resultado;
+}
+
+QImage TransformacaoGeometrica::transladarHorizontal(const QImage &imagem, int percentual)
+{
+    // Garante que o percentual esteja dentro do intervalo [-100, 100]
+    if (percentual > 100) percentual = 100;
+    if (percentual < -100) percentual = -100;
+
+    int w = imagem.width();
+    int h = imagem.height();
+
+    // Calcula o deslocamento em pixels
+    int deslocamento = (percentual * w) / 100;
+
+    // Cria imagem de saída com mesmas dimensões
+    QImage resultado(w, h, imagem.format());
+    resultado.fill(Qt::transparent);
+
+    // Copia os pixels com deslocamento
+    for (int y = 0; y < h; ++y) {
+        const QRgb *linhaOrig = reinterpret_cast<const QRgb *>(imagem.scanLine(y));
+        QRgb *linhaDest = reinterpret_cast<QRgb *>(resultado.scanLine(y));
+
+        for (int x = 0; x < w; ++x) {
+            int xDestino = x + deslocamento;
+
+            if (xDestino >= 0 && xDestino < w) {
+                linhaDest[xDestino] = linhaOrig[x];
+            }
+            // Pixels fora do intervalo [0, w) são descartados
+        }
+    }
+    return resultado;
+}

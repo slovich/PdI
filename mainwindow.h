@@ -60,6 +60,10 @@ private slots:
 
     void on_pushButton_espelhamento_horizontal_clicked();
 
+    void on_pushButton_translado_vertical_clicked();
+
+    void on_pushButton_translado_horizontal_clicked();
+
 private:
     Ui::MainWindow *ui;
     QFileSystemModel *dirmodel, *dirmodel_1, *dirmodel_2, *dirmodel_3;

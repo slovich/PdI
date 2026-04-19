@@ -17,6 +17,12 @@ public:
 
     // Espelhamento horizontal
     QImage espelharHorizontal(const QImage &imagem);
+
+    //Translação vertical de imagens
+    QImage transladarVertical(const QImage &imagem, int percentual);
+
+    //Translação horizontal de imagens
+    QImage transladarHorizontal(const QImage &imagem, int percentual);
 };
 
 #endif // TRANSFORMACAOGEOMETRICA_H

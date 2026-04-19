@@ -7,5 +7,6 @@
         <file>resource/img/aritimetico.png</file>
         <file>resource/img/quantizacao.png</file>
         <file>resource/img/ico_mainwindow.ico</file>
+        <file>resource/img/geometrica.png</file>
     </qresource>
 </RCC>

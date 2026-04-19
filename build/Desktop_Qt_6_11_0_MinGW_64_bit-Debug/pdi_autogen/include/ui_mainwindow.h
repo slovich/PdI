@@ -24,6 +24,7 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTextEdit>
@@ -45,6 +46,7 @@ public:
     QAction *actionAritimetica;
     QAction *actionQuantizacao_2;
     QAction *actionSalvar_2;
+    QAction *actionGeometrica;
     QWidget *centralwidget;
     QStackedWidget *stackedWidget;
     QWidget *quantization;
@@ -150,6 +152,53 @@ public:
     QLabel *label_diretorio_imagem_2;
     QTreeView *treeView_diretorio_imagem_2;
     QPushButton *pushButton_selecionar_cancelar_aritimetica;
+    QWidget *page_5;
+    QLabel *label_titulo1_3;
+    QGroupBox *groupBox_6;
+    QWidget *widget;
+    QVBoxLayout *verticalLayout_15;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *label_graus;
+    QLineEdit *lineEdit_graus;
+    QPushButton *pushButton__rotacionar_imagem_geometrica;
+    QGroupBox *groupBox_7;
+    QSlider *verticalSlider_translacao_vertical;
+    QPushButton *pushButton_translado_vertical;
+    QGroupBox *groupBox_8;
+    QSlider *horizontalSlider_translacao_horizontal;
+    QPushButton *pushButton_translado_horizontal;
+    QGroupBox *groupBox_9;
+    QWidget *widget1;
+    QHBoxLayout *horizontalLayout_14;
+    QHBoxLayout *horizontalLayout_3;
+    QLabel *label_x;
+    QLineEdit *lineEdit_x;
+    QPushButton *pushButton_transformar_imagem_geometrica;
+    QWidget *widget2;
+    QHBoxLayout *horizontalLayout_15;
+    QHBoxLayout *horizontalLayout_13;
+    QLabel *label_y;
+    QLineEdit *lineEdit_y;
+    QPushButton *pushButton_transformar_imagem_geometrica_2;
+    QGroupBox *groupBox_10;
+    QWidget *widget3;
+    QVBoxLayout *verticalLayout_14;
+    QPushButton *pushButton_espelhamento_vertical;
+    QPushButton *pushButton_espelhamento_horizontal;
+    QGroupBox *groupBox_11;
+    QLabel *label_imagem_tg_original;
+    QGroupBox *groupBox_12;
+    QLabel *label_imagem_tg_modificada;
+    QPushButton *pushButton_manter_alteracao;
+    QWidget *layoutWidget_4;
+    QVBoxLayout *verticalLayout_16;
+    QLabel *label_diretorio_imagem_geometrica;
+    QTreeView *treeView_diretorio_imagem_geometrica;
+    QWidget *layoutWidget_5;
+    QVBoxLayout *verticalLayout_17;
+    QLabel *label_arquivo_imagem_geometrica;
+    QListView *listView_arquivo_imagem_geometrica;
+    QPushButton *pushButton_selecionar_imagem_geometrica;
     QMenuBar *menubar;
     QMenu *menuArquivo;
     QMenu *menuAjuda;
@@ -177,11 +226,13 @@ public:
         actionQuantizacao_2->setObjectName("actionQuantizacao_2");
         actionSalvar_2 = new QAction(MainWindow);
         actionSalvar_2->setObjectName("actionSalvar_2");
+        actionGeometrica = new QAction(MainWindow);
+        actionGeometrica->setObjectName("actionGeometrica");
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         stackedWidget = new QStackedWidget(centralwidget);
         stackedWidget->setObjectName("stackedWidget");
-        stackedWidget->setGeometry(QRect(10, 10, 781, 541));
+        stackedWidget->setGeometry(QRect(10, 10, 781, 551));
         quantization = new QWidget();
         quantization->setObjectName("quantization");
         label_titulo1 = new QLabel(quantization);
@@ -661,6 +712,205 @@ public:
         pushButton_selecionar_cancelar_aritimetica->setObjectName("pushButton_selecionar_cancelar_aritimetica");
         pushButton_selecionar_cancelar_aritimetica->setGeometry(QRect(600, 80, 131, 24));
         stackedWidget->addWidget(page_4);
+        page_5 = new QWidget();
+        page_5->setObjectName("page_5");
+        label_titulo1_3 = new QLabel(page_5);
+        label_titulo1_3->setObjectName("label_titulo1_3");
+        label_titulo1_3->setGeometry(QRect(10, 10, 411, 41));
+        label_titulo1_3->setFont(font);
+        label_titulo1_3->setStyleSheet(QString::fromUtf8(""));
+        label_titulo1_3->setFrameShape(QFrame::Shape::StyledPanel);
+        label_titulo1_3->setFrameShadow(QFrame::Shadow::Sunken);
+        label_titulo1_3->setMidLineWidth(1);
+        label_titulo1_3->setTextFormat(Qt::TextFormat::RichText);
+        groupBox_6 = new QGroupBox(page_5);
+        groupBox_6->setObjectName("groupBox_6");
+        groupBox_6->setGeometry(QRect(10, 60, 120, 91));
+        widget = new QWidget(groupBox_6);
+        widget->setObjectName("widget");
+        widget->setGeometry(QRect(10, 20, 101, 56));
+        verticalLayout_15 = new QVBoxLayout(widget);
+        verticalLayout_15->setObjectName("verticalLayout_15");
+        verticalLayout_15->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
+        label_graus = new QLabel(widget);
+        label_graus->setObjectName("label_graus");
+
+        horizontalLayout_2->addWidget(label_graus);
+
+        lineEdit_graus = new QLineEdit(widget);
+        lineEdit_graus->setObjectName("lineEdit_graus");
+
+        horizontalLayout_2->addWidget(lineEdit_graus);
+
+
+        verticalLayout_15->addLayout(horizontalLayout_2);
+
+        pushButton__rotacionar_imagem_geometrica = new QPushButton(widget);
+        pushButton__rotacionar_imagem_geometrica->setObjectName("pushButton__rotacionar_imagem_geometrica");
+
+        verticalLayout_15->addWidget(pushButton__rotacionar_imagem_geometrica);
+
+        groupBox_7 = new QGroupBox(page_5);
+        groupBox_7->setObjectName("groupBox_7");
+        groupBox_7->setGeometry(QRect(160, 60, 121, 201));
+        verticalSlider_translacao_vertical = new QSlider(groupBox_7);
+        verticalSlider_translacao_vertical->setObjectName("verticalSlider_translacao_vertical");
+        verticalSlider_translacao_vertical->setGeometry(QRect(20, 20, 22, 160));
+        verticalSlider_translacao_vertical->setMinimum(-100);
+        verticalSlider_translacao_vertical->setMaximum(100);
+        verticalSlider_translacao_vertical->setOrientation(Qt::Orientation::Vertical);
+        verticalSlider_translacao_vertical->setTickPosition(QSlider::TickPosition::TicksBothSides);
+        pushButton_translado_vertical = new QPushButton(groupBox_7);
+        pushButton_translado_vertical->setObjectName("pushButton_translado_vertical");
+        pushButton_translado_vertical->setGeometry(QRect(70, 20, 24, 160));
+        groupBox_8 = new QGroupBox(page_5);
+        groupBox_8->setObjectName("groupBox_8");
+        groupBox_8->setGeometry(QRect(310, 60, 181, 101));
+        horizontalSlider_translacao_horizontal = new QSlider(groupBox_8);
+        horizontalSlider_translacao_horizontal->setObjectName("horizontalSlider_translacao_horizontal");
+        horizontalSlider_translacao_horizontal->setGeometry(QRect(10, 30, 160, 22));
+        horizontalSlider_translacao_horizontal->setMinimum(-100);
+        horizontalSlider_translacao_horizontal->setMaximum(100);
+        horizontalSlider_translacao_horizontal->setOrientation(Qt::Orientation::Horizontal);
+        horizontalSlider_translacao_horizontal->setTickPosition(QSlider::TickPosition::TicksBothSides);
+        pushButton_translado_horizontal = new QPushButton(groupBox_8);
+        pushButton_translado_horizontal->setObjectName("pushButton_translado_horizontal");
+        pushButton_translado_horizontal->setGeometry(QRect(10, 60, 160, 24));
+        groupBox_9 = new QGroupBox(page_5);
+        groupBox_9->setObjectName("groupBox_9");
+        groupBox_9->setGeometry(QRect(310, 170, 181, 91));
+        widget1 = new QWidget(groupBox_9);
+        widget1->setObjectName("widget1");
+        widget1->setGeometry(QRect(10, 20, 161, 26));
+        horizontalLayout_14 = new QHBoxLayout(widget1);
+        horizontalLayout_14->setObjectName("horizontalLayout_14");
+        horizontalLayout_14->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName("horizontalLayout_3");
+        label_x = new QLabel(widget1);
+        label_x->setObjectName("label_x");
+
+        horizontalLayout_3->addWidget(label_x);
+
+        lineEdit_x = new QLineEdit(widget1);
+        lineEdit_x->setObjectName("lineEdit_x");
+
+        horizontalLayout_3->addWidget(lineEdit_x);
+
+        horizontalLayout_3->setStretch(0, 1);
+        horizontalLayout_3->setStretch(1, 3);
+
+        horizontalLayout_14->addLayout(horizontalLayout_3);
+
+        pushButton_transformar_imagem_geometrica = new QPushButton(widget1);
+        pushButton_transformar_imagem_geometrica->setObjectName("pushButton_transformar_imagem_geometrica");
+
+        horizontalLayout_14->addWidget(pushButton_transformar_imagem_geometrica);
+
+        widget2 = new QWidget(groupBox_9);
+        widget2->setObjectName("widget2");
+        widget2->setGeometry(QRect(10, 50, 161, 26));
+        horizontalLayout_15 = new QHBoxLayout(widget2);
+        horizontalLayout_15->setObjectName("horizontalLayout_15");
+        horizontalLayout_15->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_13 = new QHBoxLayout();
+        horizontalLayout_13->setObjectName("horizontalLayout_13");
+        label_y = new QLabel(widget2);
+        label_y->setObjectName("label_y");
+
+        horizontalLayout_13->addWidget(label_y);
+
+        lineEdit_y = new QLineEdit(widget2);
+        lineEdit_y->setObjectName("lineEdit_y");
+
+        horizontalLayout_13->addWidget(lineEdit_y);
+
+        horizontalLayout_13->setStretch(0, 1);
+        horizontalLayout_13->setStretch(1, 3);
+
+        horizontalLayout_15->addLayout(horizontalLayout_13);
+
+        pushButton_transformar_imagem_geometrica_2 = new QPushButton(widget2);
+        pushButton_transformar_imagem_geometrica_2->setObjectName("pushButton_transformar_imagem_geometrica_2");
+
+        horizontalLayout_15->addWidget(pushButton_transformar_imagem_geometrica_2);
+
+        groupBox_10 = new QGroupBox(page_5);
+        groupBox_10->setObjectName("groupBox_10");
+        groupBox_10->setGeometry(QRect(10, 170, 120, 91));
+        widget3 = new QWidget(groupBox_10);
+        widget3->setObjectName("widget3");
+        widget3->setGeometry(QRect(10, 20, 101, 56));
+        verticalLayout_14 = new QVBoxLayout(widget3);
+        verticalLayout_14->setObjectName("verticalLayout_14");
+        verticalLayout_14->setContentsMargins(0, 0, 0, 0);
+        pushButton_espelhamento_vertical = new QPushButton(widget3);
+        pushButton_espelhamento_vertical->setObjectName("pushButton_espelhamento_vertical");
+
+        verticalLayout_14->addWidget(pushButton_espelhamento_vertical);
+
+        pushButton_espelhamento_horizontal = new QPushButton(widget3);
+        pushButton_espelhamento_horizontal->setObjectName("pushButton_espelhamento_horizontal");
+
+        verticalLayout_14->addWidget(pushButton_espelhamento_horizontal);
+
+        groupBox_11 = new QGroupBox(page_5);
+        groupBox_11->setObjectName("groupBox_11");
+        groupBox_11->setGeometry(QRect(10, 300, 221, 231));
+        label_imagem_tg_original = new QLabel(groupBox_11);
+        label_imagem_tg_original->setObjectName("label_imagem_tg_original");
+        label_imagem_tg_original->setGeometry(QRect(10, 20, 200, 200));
+        label_imagem_tg_original->setPixmap(QPixmap(QString::fromUtf8(":/img/resource/img/default_img.png")));
+        label_imagem_tg_original->setScaledContents(true);
+        groupBox_12 = new QGroupBox(page_5);
+        groupBox_12->setObjectName("groupBox_12");
+        groupBox_12->setGeometry(QRect(270, 300, 221, 231));
+        label_imagem_tg_modificada = new QLabel(groupBox_12);
+        label_imagem_tg_modificada->setObjectName("label_imagem_tg_modificada");
+        label_imagem_tg_modificada->setGeometry(QRect(10, 20, 200, 200));
+        label_imagem_tg_modificada->setPixmap(QPixmap(QString::fromUtf8(":/img/resource/img/default_img.png")));
+        label_imagem_tg_modificada->setScaledContents(true);
+        pushButton_manter_alteracao = new QPushButton(page_5);
+        pushButton_manter_alteracao->setObjectName("pushButton_manter_alteracao");
+        pushButton_manter_alteracao->setGeometry(QRect(274, 270, 221, 24));
+        layoutWidget_4 = new QWidget(page_5);
+        layoutWidget_4->setObjectName("layoutWidget_4");
+        layoutWidget_4->setGeometry(QRect(510, 60, 258, 216));
+        verticalLayout_16 = new QVBoxLayout(layoutWidget_4);
+        verticalLayout_16->setObjectName("verticalLayout_16");
+        verticalLayout_16->setContentsMargins(0, 0, 0, 0);
+        label_diretorio_imagem_geometrica = new QLabel(layoutWidget_4);
+        label_diretorio_imagem_geometrica->setObjectName("label_diretorio_imagem_geometrica");
+
+        verticalLayout_16->addWidget(label_diretorio_imagem_geometrica);
+
+        treeView_diretorio_imagem_geometrica = new QTreeView(layoutWidget_4);
+        treeView_diretorio_imagem_geometrica->setObjectName("treeView_diretorio_imagem_geometrica");
+
+        verticalLayout_16->addWidget(treeView_diretorio_imagem_geometrica);
+
+        layoutWidget_5 = new QWidget(page_5);
+        layoutWidget_5->setObjectName("layoutWidget_5");
+        layoutWidget_5->setGeometry(QRect(510, 300, 258, 216));
+        verticalLayout_17 = new QVBoxLayout(layoutWidget_5);
+        verticalLayout_17->setObjectName("verticalLayout_17");
+        verticalLayout_17->setContentsMargins(0, 0, 0, 0);
+        label_arquivo_imagem_geometrica = new QLabel(layoutWidget_5);
+        label_arquivo_imagem_geometrica->setObjectName("label_arquivo_imagem_geometrica");
+
+        verticalLayout_17->addWidget(label_arquivo_imagem_geometrica);
+
+        listView_arquivo_imagem_geometrica = new QListView(layoutWidget_5);
+        listView_arquivo_imagem_geometrica->setObjectName("listView_arquivo_imagem_geometrica");
+
+        verticalLayout_17->addWidget(listView_arquivo_imagem_geometrica);
+
+        pushButton_selecionar_imagem_geometrica = new QPushButton(page_5);
+        pushButton_selecionar_imagem_geometrica->setObjectName("pushButton_selecionar_imagem_geometrica");
+        pushButton_selecionar_imagem_geometrica->setGeometry(QRect(670, 30, 101, 24));
+        stackedWidget->addWidget(page_5);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -687,10 +937,11 @@ public:
         menuAjuda->addAction(actionSobre);
         menuFerramentas->addAction(actionQuantizacao_2);
         menuFerramentas->addAction(actionAritimetica);
+        menuFerramentas->addAction(actionGeometrica);
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(4);
+        stackedWidget->setCurrentIndex(6);
         comboBox_niveis_canal->setCurrentIndex(3);
         comboBox_profundidade_bits->setCurrentIndex(3);
         comboBox_numero_cores->setCurrentIndex(2);
@@ -711,6 +962,7 @@ public:
         actionAritimetica->setText(QCoreApplication::translate("MainWindow", "Aritim\303\251tica", nullptr));
         actionQuantizacao_2->setText(QCoreApplication::translate("MainWindow", "Quantiza\303\247\303\243o", nullptr));
         actionSalvar_2->setText(QCoreApplication::translate("MainWindow", "Salvar", nullptr));
+        actionGeometrica->setText(QCoreApplication::translate("MainWindow", "Transf. Geom\303\251trica", nullptr));
         label_titulo1->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ff0000;\">Quantiza\303\247\303\243o</span></p></body></html>", nullptr));
         label_imagem_modificada->setText(QString());
         label_imagem_original->setText(QString());
@@ -751,7 +1003,7 @@ public:
 
         pushButton_aplicar_cm->setText(QCoreApplication::translate("MainWindow", "Aplicar Corte Mediano", nullptr));
         pushButton_cancelar_algoritmo->setText(QCoreApplication::translate("MainWindow", "Cancelar", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:22pt; font-weight:700; color:#ff0000;\">PdI</span><span style=\" font-size:22pt; font-weight:700;\"><br/></span><span style=\" font-size:22pt;\">Processamento de Imagens 1.1</span></p></body></html>", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:22pt; font-weight:700; color:#ff0000;\">PdI</span><span style=\" font-size:22pt; font-weight:700;\"><br/></span><span style=\" font-size:22pt;\">Processamento de Imagens 1.2</span></p></body></html>", nullptr));
         textEdit->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -789,6 +1041,36 @@ public:
         label_arquivo_imagem_2->setText(QCoreApplication::translate("MainWindow", "Arquivo", nullptr));
         label_diretorio_imagem_2->setText(QCoreApplication::translate("MainWindow", "Diret\303\263rio:", nullptr));
         pushButton_selecionar_cancelar_aritimetica->setText(QCoreApplication::translate("MainWindow", "Cancelar", nullptr));
+        label_titulo1_3->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ff0000;\">Transforma\303\247\303\265e Geom\303\251tricas</span></p></body></html>", nullptr));
+        groupBox_6->setTitle(QCoreApplication::translate("MainWindow", "Rota\303\247\303\243o", nullptr));
+        label_graus->setText(QCoreApplication::translate("MainWindow", "Graus:", nullptr));
+        pushButton__rotacionar_imagem_geometrica->setText(QCoreApplication::translate("MainWindow", "Aplicar", nullptr));
+        groupBox_7->setTitle(QCoreApplication::translate("MainWindow", "Transla\303\247\303\243o Vertical", nullptr));
+        pushButton_translado_vertical->setText(QCoreApplication::translate("MainWindow", "A\n"
+"p\n"
+"l\n"
+"i\n"
+"c\n"
+"a\n"
+"r", nullptr));
+        groupBox_8->setTitle(QCoreApplication::translate("MainWindow", "Transla\303\247\303\243o Horizontal", nullptr));
+        pushButton_translado_horizontal->setText(QCoreApplication::translate("MainWindow", "Aplicar", nullptr));
+        groupBox_9->setTitle(QCoreApplication::translate("MainWindow", "Alongamento e Compress\303\243o", nullptr));
+        label_x->setText(QCoreApplication::translate("MainWindow", "X", nullptr));
+        pushButton_transformar_imagem_geometrica->setText(QCoreApplication::translate("MainWindow", "Aplicar", nullptr));
+        label_y->setText(QCoreApplication::translate("MainWindow", "Y", nullptr));
+        pushButton_transformar_imagem_geometrica_2->setText(QCoreApplication::translate("MainWindow", "Aplicar", nullptr));
+        groupBox_10->setTitle(QCoreApplication::translate("MainWindow", "Espelhamento", nullptr));
+        pushButton_espelhamento_vertical->setText(QCoreApplication::translate("MainWindow", "Vertical", nullptr));
+        pushButton_espelhamento_horizontal->setText(QCoreApplication::translate("MainWindow", "Horizontal", nullptr));
+        groupBox_11->setTitle(QCoreApplication::translate("MainWindow", "Imagem Original", nullptr));
+        label_imagem_tg_original->setText(QString());
+        groupBox_12->setTitle(QCoreApplication::translate("MainWindow", "Imagem Original", nullptr));
+        label_imagem_tg_modificada->setText(QString());
+        pushButton_manter_alteracao->setText(QCoreApplication::translate("MainWindow", "Manter Altera\303\247\303\243o", nullptr));
+        label_diretorio_imagem_geometrica->setText(QCoreApplication::translate("MainWindow", "Diret\303\263rio:", nullptr));
+        label_arquivo_imagem_geometrica->setText(QCoreApplication::translate("MainWindow", "Arquivo", nullptr));
+        pushButton_selecionar_imagem_geometrica->setText(QCoreApplication::translate("MainWindow", "Aplicar", nullptr));
         menuArquivo->setTitle(QCoreApplication::translate("MainWindow", "Arquivo", nullptr));
         menuAjuda->setTitle(QCoreApplication::translate("MainWindow", "Ajuda", nullptr));
         menuFerramentas->setTitle(QCoreApplication::translate("MainWindow", "Ferramentas", nullptr));

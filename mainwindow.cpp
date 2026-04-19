@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include "quantizacao.h"
 #include "aritmetica.h"
+#include "quantizacao.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -11,9 +11,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->stackedWidget->setCurrentIndex(0);
     ui->toolBar->addAction(ui->actionQuantizacao_2);
     ui->toolBar->addAction(ui->actionAritimetica);
+    ui->toolBar->addAction(ui->actionGeometrica);
     ui->actionQuantizacao_2->setIcon(QIcon(":/img/resource/img/quantizacao.png"));
     ui->actionAritimetica->setIcon(QIcon(":/img/resource/img/aritimetico.png"));
-    /*Trabalha os modles reponsavel pela listagem de diretórios e arquivos nos exploradores*/
+    ui->actionGeometrica->setIcon(QIcon(":/img/resource/img/geometrica.png"));
+    /*Trabalha os models reponsaveis pela listagem de diretórios e arquivos nos exploradores*/
     QString caminho = "C:/";
     dirmodel = new QFileSystemModel(this);
     dirmodel->setFilter(QDir::NoDotAndDotDot | QDir::AllDirs);
@@ -29,6 +31,10 @@ MainWindow::MainWindow(QWidget *parent)
     dirmodel_2->setFilter(QDir::NoDotAndDotDot | QDir::AllDirs);
     dirmodel_2->setRootPath(caminho);
     ui->treeView_diretorio_imagem_2->setModel(dirmodel_2);
+    dirmodel_3 = new QFileSystemModel(this);
+    dirmodel_3->setFilter(QDir::NoDotAndDotDot | QDir::AllDirs);
+    dirmodel_3->setRootPath(caminho);
+    ui->treeView_diretorio_imagem_geometrica->setModel(dirmodel_3);
     filemodel = new QFileSystemModel(this);
     filemodel->setFilter(QDir::NoDotAndDotDot | QDir::Files);
     filemodel->setRootPath(caminho);
@@ -41,6 +47,10 @@ MainWindow::MainWindow(QWidget *parent)
     filemodel_2->setFilter(QDir::NoDotAndDotDot | QDir::Files);
     filemodel_2->setRootPath(caminho);
     ui->listView_arquivo_imagem_2->setModel(filemodel_2);
+    filemodel_3 = new QFileSystemModel(this);
+    filemodel_3->setFilter(QDir::NoDotAndDotDot | QDir::Files);
+    filemodel_3->setRootPath(caminho);
+    ui->listView_arquivo_imagem_geometrica->setModel(filemodel_3);
     /* define os filtros de extensão de imagens permitidas no programa*/
     QStringList filtros; //cria o filtro
     filtros << "*.jpg" << "*.jpeg" << "*.png" << "*.bmp"
@@ -51,6 +61,8 @@ MainWindow::MainWindow(QWidget *parent)
     filemodel_1->setNameFilterDisables(false);
     filemodel_2->setNameFilters(filtros);
     filemodel_2->setNameFilterDisables(false);
+    filemodel_3->setNameFilters(filtros);
+    filemodel_3->setNameFilterDisables(false);
     /*Valida os dados de entrada para multiplicação e divisão de imagens por escalar*/
     validator = new QIntValidator(0, 255, this);
     ui->lineEdit_valor->setValidator(validator);
@@ -232,34 +244,55 @@ void MainWindow::on_pushButton_aplicar_cm_clicked()
 //Salva a imagem modificada como um PNG
 void MainWindow::on_actionSalvar_2_triggered()
 {
-    if(ui->stackedWidget->currentIndex() == 0)
-    {
-            // Verifica se há imagem processada
-            QPixmap pixmap = ui->label_imagem_modificada->pixmap();
-            if (!pixmap || pixmap.isNull()) {
-                QMessageBox::warning(this, "Nenhuma imagem", "Não há imagem processada para salvar.");
-                return;
-            }
+    if (ui->stackedWidget->currentIndex() == 0) {
+        // Verifica se há imagem processada
+        QPixmap pixmap = ui->label_imagem_modificada->pixmap();
+        if (!pixmap || pixmap.isNull()) {
+            QMessageBox::warning(this, "Nenhuma imagem", "Não há imagem processada para salvar.");
+            return;
+        }
 
-            // Abre diálogo para escolher local e formato
-            QString fileName = QFileDialog::getSaveFileName(this,
-                                                            "Salvar imagem",
-                                                            QDir::homePath(),
-                                                            "Imagens (*.png *.jpg *.bmp)");
+        // Abre diálogo para escolher local e formato
+        QString fileName = QFileDialog::getSaveFileName(this,
+                                                        "Salvar imagem",
+                                                        QDir::homePath(),
+                                                        "Imagens (*.png *.jpg *.bmp)");
 
-            if (fileName.isEmpty())
-                return;
+        if (fileName.isEmpty())
+            return;
 
-            // Converte para QImage e salva
-            QImage img = pixmap.toImage();
-            if (!img.save(fileName)) {
-                QMessageBox::critical(this, "Erro", "Não foi possível salvar a imagem.");
-            }
+        // Converte para QImage e salva
+        QImage img = pixmap.toImage();
+        if (!img.save(fileName)) {
+            QMessageBox::critical(this, "Erro", "Não foi possível salvar a imagem.");
+        }
     }
-    if(ui->stackedWidget->currentIndex() == 4)
-    {
+    if (ui->stackedWidget->currentIndex() == 4) {
         // Verifica se há imagem processada
         QPixmap pixmap = ui->label_imagem_3->pixmap();
+        if (!pixmap || pixmap.isNull()) {
+            QMessageBox::warning(this, "Nenhuma imagem", "Não há imagem processada para salvar.");
+            return;
+        }
+
+        // Abre diálogo para escolher local e formato
+        QString fileName = QFileDialog::getSaveFileName(this,
+                                                        "Salvar imagem",
+                                                        QDir::homePath(),
+                                                        "Imagens (*.png *.jpg *.bmp)");
+
+        if (fileName.isEmpty())
+            return;
+
+        // Converte para QImage e salva
+        QImage img = pixmap.toImage();
+        if (!img.save(fileName)) {
+            QMessageBox::critical(this, "Erro", "Não foi possível salvar a imagem.");
+        }
+    }
+    if (ui->stackedWidget->currentIndex() == 6) {
+        // Verifica se há imagem processada
+        QPixmap pixmap = ui->label_imagem_tg_modificada->pixmap();
         if (!pixmap || pixmap.isNull()) {
             QMessageBox::warning(this, "Nenhuma imagem", "Não há imagem processada para salvar.");
             return;
@@ -300,7 +333,7 @@ void MainWindow::on_pushButton_voltar_clicked()
 
 void MainWindow::on_actionQuantizacao_2_triggered()
 {
-     setDefaultImages();
+    setDefaultImages();
     ui->stackedWidget->setCurrentIndex(0);
 }
 
@@ -309,6 +342,13 @@ void MainWindow::on_actionAritimetica_triggered()
     setDefaultImages();
     ui->stackedWidget->setCurrentIndex(4);
 }
+
+void MainWindow::on_actionGeometrica_triggered()
+{
+    setDefaultImages();
+    ui->stackedWidget->setCurrentIndex(6);
+}
+
 void MainWindow::on_radioButton_clicked()
 {
     ui->label_imagem_2->setVisible(true);
@@ -316,7 +356,6 @@ void MainWindow::on_radioButton_clicked()
     ui->groupBox_5->setVisible(true);
     ui->label_imagem_adicional->setVisible(true);
     setDefaultImages();
-
 }
 
 void MainWindow::on_radioButton_2_clicked()
@@ -356,12 +395,10 @@ void MainWindow::on_pushButton_clicked()
     ui->stackedWidget->setCurrentIndex(5);
     selected_aritimethic_image_1 = false;
     selected_aritimethic_image_2 = false;
-    if(ui->radioButton->isChecked() or ui->radioButton_2->isChecked())
-    {
+    if (ui->radioButton->isChecked() or ui->radioButton_2->isChecked()) {
         ui->groupBox_5->setVisible(true);
     }
-    if(ui->radioButton_3->isChecked() or ui->radioButton_4->isChecked())
-    {
+    if (ui->radioButton_3->isChecked() or ui->radioButton_4->isChecked()) {
         ui->groupBox_5->setVisible(false);
     }
 }
@@ -369,12 +406,11 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_pushButton_selecionar_imagens_aritimetica_clicked()
 {
     // Código de adição de imagem para adição e subtração
-    if(ui->radioButton->isChecked() or ui->radioButton_2->isChecked())
-    {
+    if (ui->radioButton->isChecked() or ui->radioButton_2->isChecked()) {
         //obtém o índice selecionado nos dois listView
         QModelIndex index1 = ui->listView_arquivo_imagem_1->currentIndex();
         QModelIndex index2 = ui->listView_arquivo_imagem_2->currentIndex();
-        if (!(index1.isValid() or index2.isValid() )) {
+        if (!(index1.isValid() or index2.isValid())) {
             // nada selecionado → não faz nada
             return;
         }
@@ -387,16 +423,16 @@ void MainWindow::on_pushButton_selecionar_imagens_aritimetica_clicked()
         //Extrai as extensões dos arquivos selecionados para verificar se são arquivos válidos (jpeg, png, bmp, tiff)
         QString ext1 = info1.suffix().toLower();
         QString ext2 = info2.suffix().toLower();
-        if ((ext1 == "jpg" || ext1 == "jpeg" || ext1 == "png" || ext1 == "bmp" || ext1 == "tiff") and
-            (ext2 == "jpg" || ext2 == "jpeg" || ext2 == "png" || ext2 == "bmp" || ext2 == "tiff"))
-        {
+        if ((ext1 == "jpg" || ext1 == "jpeg" || ext1 == "png" || ext1 == "bmp" || ext1 == "tiff")
+            and (ext2 == "jpg" || ext2 == "jpeg" || ext2 == "png" || ext2 == "bmp"
+                 || ext2 == "tiff")) {
             // carrega nos labels do índice 4
             QPixmap pixmap1(caminhoArquivo1);
             QPixmap pixmap2(caminhoArquivo2);
             //atribui as imagens validadas aos labels
             ui->label_imagem_1->setPixmap(pixmap1.scaled(ui->label_imagem_1->size(),
-                                                               Qt::KeepAspectRatio,
-                                                               Qt::SmoothTransformation));
+                                                         Qt::KeepAspectRatio,
+                                                         Qt::SmoothTransformation));
             ui->label_imagem_2->setPixmap(pixmap2.scaled(ui->label_imagem_2->size(),
                                                          Qt::KeepAspectRatio,
                                                          Qt::SmoothTransformation));
@@ -405,16 +441,15 @@ void MainWindow::on_pushButton_selecionar_imagens_aritimetica_clicked()
             selected_aritimethic_image_1 = true;
             selected_aritimethic_image_2 = true;
             ui->stackedWidget->setCurrentIndex(4);
-        }
-        else {
+        } else {
             // Pelo menos um dos arquivos não é imagem válida → ignora ou mostra aviso
-            QMessageBox::warning(this,
-                                 "Arquivo inválido",
-                                 "Selecione um arquivo de imagem válido (jpg, jpeg, png, bmp, tiff).");
+            QMessageBox::warning(
+                this,
+                "Arquivo inválido",
+                "Selecione um arquivo de imagem válido (jpg, jpeg, png, bmp, tiff).");
         }
     }
-    if(ui->radioButton_3->isChecked() or ui->radioButton_4->isChecked())
-    {
+    if (ui->radioButton_3->isChecked() or ui->radioButton_4->isChecked()) {
         //obtém o índice selecionado no listView
         QModelIndex index = ui->listView_arquivo_imagem_1->currentIndex();
         if (!index.isValid()) {
@@ -427,42 +462,36 @@ void MainWindow::on_pushButton_selecionar_imagens_aritimetica_clicked()
         QFileInfo info(caminhoArquivo);
         //Extrai a extensão do arquivo selecionado para verificar se é um arquivos válido (jpeg, png, bmp, tiff)
         QString ext = info.suffix().toLower();
-        if (ext == "jpg" || ext == "jpeg" || ext == "png" || ext == "bmp" || ext == "tiff")
-        {
+        if (ext == "jpg" || ext == "jpeg" || ext == "png" || ext == "bmp" || ext == "tiff") {
             // carrega imagem no label do índice 4
             QPixmap pixmap(caminhoArquivo);
             //atribui imagem validada no label
             ui->label_imagem_1->setPixmap(pixmap.scaled(ui->label_imagem_1->size(),
-                                                         Qt::KeepAspectRatio,
-                                                         Qt::SmoothTransformation));
+                                                        Qt::KeepAspectRatio,
+                                                        Qt::SmoothTransformation));
             ui->label_imagem_1->setScaledContents(false);
             selected_aritimethic_image_1 = true;
             ui->stackedWidget->setCurrentIndex(4);
-        }
-        else {
+        } else {
             // Pelo menos um dos arquivos não é imagem válida → ignora ou mostra aviso
-            QMessageBox::warning(this,
-                                 "Arquivo inválido",
-                                 "Selecione um arquivo de imagem válido (jpg, jpeg, png, bmp, tiff).");
+            QMessageBox::warning(
+                this,
+                "Arquivo inválido",
+                "Selecione um arquivo de imagem válido (jpg, jpeg, png, bmp, tiff).");
         }
     }
 }
 void MainWindow::on_pushButton_calcular_clicked()
 {
     //Verifica se é uma operação de soma ou subtração
-    if(ui->radioButton->isChecked() or ui->radioButton_2->isChecked())
-    {
+    if (ui->radioButton->isChecked() or ui->radioButton_2->isChecked()) {
         //Verifica se ambas as imagens estão selecionadas.
-        if(selected_aritimethic_image_1 == true and selected_aritimethic_image_2 == true)
-        {
-            if(ui->radioButton->isChecked())
-            {
+        if (selected_aritimethic_image_1 == true and selected_aritimethic_image_2 == true) {
+            if (ui->radioButton->isChecked()) {
                 if (!ui->label_imagem_1->pixmap() || !ui->label_imagem_2->pixmap()) {
                     QMessageBox::warning(this, "Erro", "Imagens não carregadas.");
                     return;
-                }
-                else
-                {
+                } else {
                     //Aplica a adição das imagens
                     QPixmap pixmap_pacela_1 = ui->label_imagem_1->pixmap();
                     QPixmap pixmap_pacela_2 = ui->label_imagem_2->pixmap();
@@ -476,14 +505,11 @@ void MainWindow::on_pushButton_calcular_clicked()
                     ui->label_imagem_3->setScaledContents(false);
                 }
             }
-            if(ui->radioButton_2->isChecked())
-            {
+            if (ui->radioButton_2->isChecked()) {
                 if (!ui->label_imagem_1->pixmap() || !ui->label_imagem_2->pixmap()) {
                     QMessageBox::warning(this, "Erro", "Imagens não carregadas.");
                     return;
-                }
-                else
-                {
+                } else {
                     //Aplica a adição das imagens
                     QPixmap pixmap_minuendo = ui->label_imagem_1->pixmap();
                     QPixmap pixmap_subtraendo = ui->label_imagem_2->pixmap();
@@ -492,55 +518,45 @@ void MainWindow::on_pushButton_calcular_clicked()
                     QImage diferenca = Aritmetica::subtrair(imagem_minuendo, imagem_subtraendo);
                     ui->label_imagem_3->setPixmap(
                         QPixmap::fromImage(diferenca).scaled(ui->label_imagem_3->size(),
-                                                         Qt::KeepAspectRatio,
-                                                         Qt::SmoothTransformation));
+                                                             Qt::KeepAspectRatio,
+                                                             Qt::SmoothTransformation));
                     ui->label_imagem_3->setScaledContents(false);
                 }
             }
-        }
-        else
-        {
+        } else {
             QMessageBox::warning(this, "Erro", "Variaveis de seleção falsas..");
         }
     }
     //Verifica se é uma operação de multiplicação ou divisão
-    if(ui->radioButton_3->isChecked() or ui->radioButton_4->isChecked())
-    {
+    if (ui->radioButton_3->isChecked() or ui->radioButton_4->isChecked()) {
         //Verifica se a imagem original foi selecionada.
-        if(selected_aritimethic_image_1 == true)
-        {
+        if (selected_aritimethic_image_1 == true) {
             //Verifica se o valor da da multiplicação ou divisão foi inserido no campo apropriado e com valores válidos
-            if(ui->lineEdit_valor->text().toInt() > 0 and ui->lineEdit_valor->text().toInt() < 256)
-            {
-                if(ui->radioButton_3->isChecked())
-                {
+            if (ui->lineEdit_valor->text().toInt() > 0
+                and ui->lineEdit_valor->text().toInt() < 256) {
+                if (ui->radioButton_3->isChecked()) {
                     if (!ui->label_imagem_1->pixmap()) {
                         QMessageBox::warning(this, "Erro", "Imagem não carregada.");
                         return;
-                    }
-                    else
-                    {
+                    } else {
                         //Aplica operação de multiplicação
                         QPixmap pixmap_multiplicando = ui->label_imagem_1->pixmap();
                         int multiplicador = ui->lineEdit_valor->text().toInt();
                         QImage imagem_multiplicando = pixmap_multiplicando.toImage();
-                        QImage produto = Aritmetica::multiplicar(imagem_multiplicando, multiplicador);
+                        QImage produto = Aritmetica::multiplicar(imagem_multiplicando,
+                                                                 multiplicador);
                         ui->label_imagem_3->setPixmap(
                             QPixmap::fromImage(produto).scaled(ui->label_imagem_3->size(),
-                                                             Qt::KeepAspectRatio,
-                                                             Qt::SmoothTransformation));
+                                                               Qt::KeepAspectRatio,
+                                                               Qt::SmoothTransformation));
                         ui->label_imagem_3->setScaledContents(false);
                     }
-
                 }
-                if(ui->radioButton_4->isChecked())
-                {
+                if (ui->radioButton_4->isChecked()) {
                     if (!ui->label_imagem_1->pixmap()) {
                         QMessageBox::warning(this, "Erro", "Imagem não carregada.");
                         return;
-                    }
-                    else
-                    {
+                    } else {
                         //Aplica operação de divisão
                         QPixmap pixmap_dividendo = ui->label_imagem_1->pixmap();
                         int divisor = ui->lineEdit_valor->text().toInt();
@@ -548,27 +564,61 @@ void MainWindow::on_pushButton_calcular_clicked()
                         QImage quociente = Aritmetica::dividir(imagem_dividendo, divisor);
                         ui->label_imagem_3->setPixmap(
                             QPixmap::fromImage(quociente).scaled(ui->label_imagem_3->size(),
-                                                               Qt::KeepAspectRatio,
-                                                               Qt::SmoothTransformation));
+                                                                 Qt::KeepAspectRatio,
+                                                                 Qt::SmoothTransformation));
                         ui->label_imagem_3->setScaledContents(false);
                     }
                 }
-            }
-            else
-            {
+            } else {
                 // Valor a ser multiplicado é vazio ou maior que o permitido
                 QMessageBox::warning(this,
                                      "Valor inválido",
                                      "Indique um valor maior que 0 e menor ou igual a 255");
             }
-        }
-        else
-        {
+        } else {
             // Imagem original não selecionada
-            QMessageBox::warning(this,
-                                 "Arquivo inválido",
-                                 "Selecione um arquivo de imagem válido (jpg, jpeg, png, bmp, tiff).");
+            QMessageBox::warning(
+                this,
+                "Arquivo inválido",
+                "Selecione um arquivo de imagem válido (jpg, jpeg, png, bmp, tiff).");
         }
+    }
+}
+
+void MainWindow::on_treeView_diretorio_imagem_geometrica_clicked(const QModelIndex &index3)
+{
+    QString novocaminho_3 = dirmodel_3->fileInfo(index3).absolutePath();
+    ui->listView_arquivo_imagem_geometrica->setRootIndex(filemodel_3->setRootPath(novocaminho_3));
+}
+
+
+void MainWindow::on_pushButton_selecionar_imagem_geometrica_clicked()
+{
+    // obtém o índice selecionado no listView
+    QModelIndex index = ui->listView_arquivo_imagem_geometrica->currentIndex();
+
+    if (!index.isValid()) {
+        // nada selecionado → não faz nada
+        return;
+    }
+
+    QString caminhoArquivo = filemodel_3->filePath(index);
+
+    // verifica se é um arquivo válido de imagem
+    QFileInfo info(caminhoArquivo);
+    QString ext = info.suffix().toLower();
+    if (ext == "jpg" || ext == "jpeg" || ext == "png" || ext == "bmp" || ext == "tiff") {
+        // carrega no label do índice 0
+        QPixmap pixmap(caminhoArquivo);
+        ui->label_imagem_tg_original->setPixmap(pixmap.scaled(ui->label_imagem_tg_original->size(),
+                                                           Qt::KeepAspectRatio,
+                                                           Qt::SmoothTransformation));
+        ui->label_imagem_tg_original->setScaledContents(false);
+    } else {
+        // arquivo não é imagem válida → ignora ou mostra aviso
+        QMessageBox::warning(this,
+                             "Arquivo inválido",
+                             "Selecione um arquivo de imagem válido (jpg, jpeg, png, bmp, tiff).");
     }
 }
 

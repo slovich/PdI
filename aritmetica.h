@@ -3,7 +3,8 @@
 
 #include <QImage>
 
-class Aritmetica {
+class Aritmetica
+{
 public:
     static QImage somar(const QImage &img1, const QImage &img2);
     static QImage subtrair(const QImage &img1, const QImage &img2);

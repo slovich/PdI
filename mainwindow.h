@@ -24,24 +24,24 @@ public:
     ~MainWindow() override;
 
 private slots:
-    void on_pushButton_selecionar_clicked(); //Método ao se clicar no botão de selecionar após escolher uma imagem
-    void on_pushButton_procurar_clicked(); //Método ao se clicar no botão de procurar imagem
-    void on_treeView_dir_clicked(
-        const QModelIndex &
-            index); //Método que atualiza o diretrio de exibição da lista de arquivos quando há mudança na árvore de diretórios.
+    void on_pushButton_selecionar_clicked();                                //Método ao se clicar no botão de selecionar após escolher uma imagem
+    void on_pushButton_procurar_clicked();                                  //Método ao se clicar no botão de procurar imagem
+    void on_treeView_dir_clicked(const QModelIndex & index);                //Método que atualiza o diretrio de exibição da lista de arquivos quando há mudança na árvore de diretórios.
     void on_treeView_diretorio_imagem_1_clicked(const QModelIndex &index1);
     void on_treeView_diretorio_imagem_2_clicked(const QModelIndex &index2);
+    void on_treeView_diretorio_imagem_geometrica_clicked(const QModelIndex &index3);
     void on_pushButton_cancelar_clicked();
     void on_pushButton_cancelar_algoritmo_clicked();
     void on_pushButton_aplicar_clicked();
     void on_pushButton_aplicar_qu_clicked();
     void on_pushButton_aplicar_cm_clicked();
-    void on_pushButton_voltar_clicked(); //Método que retorna para página inicial estando na página Sobre do menu Ajuda
+    void on_pushButton_voltar_clicked();                                    //Método que retorna para página inicial estando na página Sobre do menu Ajuda
     void on_actionSalvar_2_triggered();
     void on_actionSair_triggered();
     void on_actionSobre_triggered();
     void on_actionQuantizacao_2_triggered();
     void on_actionAritimetica_triggered();
+    void on_actionGeometrica_triggered();
     void on_radioButton_clicked();
     void on_radioButton_2_clicked();
     void on_radioButton_3_clicked();
@@ -51,11 +51,13 @@ private slots:
     void on_pushButton_selecionar_imagens_aritimetica_clicked();
     void on_pushButton_calcular_clicked();
     void setDefaultImages();
+    void on_pushButton_selecionar_imagem_geometrica_clicked();
+
 
 private:
     Ui::MainWindow *ui;
-    QFileSystemModel *dirmodel, *dirmodel_1, *dirmodel_2;
-    QFileSystemModel *filemodel, *filemodel_1, *filemodel_2;
+    QFileSystemModel *dirmodel, *dirmodel_1, *dirmodel_2, *dirmodel_3;
+    QFileSystemModel *filemodel, *filemodel_1, *filemodel_2, *filemodel_3;
     QIntValidator *validator;
     bool selected_aritimethic_image_1, selected_aritimethic_image_2;
 };

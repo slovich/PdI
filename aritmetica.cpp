@@ -14,9 +14,9 @@ QImage Aritmetica::somar(const QImage &img1, const QImage &img2)
     QImage resultado(a.size(), QImage::Format_RGB32);
 
     for (int y = 0; y < a.height(); ++y) {
-        const QRgb *linhaA = reinterpret_cast<const QRgb*>(a.scanLine(y));
-        const QRgb *linhaB = reinterpret_cast<const QRgb*>(b.scanLine(y));
-        QRgb *linhaR = reinterpret_cast<QRgb*>(resultado.scanLine(y));
+        const QRgb *linhaA = reinterpret_cast<const QRgb *>(a.scanLine(y));
+        const QRgb *linhaB = reinterpret_cast<const QRgb *>(b.scanLine(y));
+        QRgb *linhaR = reinterpret_cast<QRgb *>(resultado.scanLine(y));
 
         for (int x = 0; x < a.width(); ++x) {
             int r = qBound(0, qRed(linhaA[x]) + qRed(linhaB[x]), 255);
@@ -42,9 +42,9 @@ QImage Aritmetica::subtrair(const QImage &img1, const QImage &img2)
     QImage resultado(a.size(), QImage::Format_RGB32);
 
     for (int y = 0; y < a.height(); ++y) {
-        const QRgb *linhaA = reinterpret_cast<const QRgb*>(a.scanLine(y));
-        const QRgb *linhaB = reinterpret_cast<const QRgb*>(b.scanLine(y));
-        QRgb *linhaR = reinterpret_cast<QRgb*>(resultado.scanLine(y));
+        const QRgb *linhaA = reinterpret_cast<const QRgb *>(a.scanLine(y));
+        const QRgb *linhaB = reinterpret_cast<const QRgb *>(b.scanLine(y));
+        QRgb *linhaR = reinterpret_cast<QRgb *>(resultado.scanLine(y));
 
         for (int x = 0; x < a.width(); ++x) {
             int r = qBound(0, qRed(linhaA[x]) - qRed(linhaB[x]), 255);
@@ -64,8 +64,8 @@ QImage Aritmetica::multiplicar(const QImage &img, int valor)
     QImage resultado(a.size(), QImage::Format_RGB32);
 
     for (int y = 0; y < a.height(); ++y) {
-        const QRgb *linhaA = reinterpret_cast<const QRgb*>(a.scanLine(y));
-        QRgb *linhaR = reinterpret_cast<QRgb*>(resultado.scanLine(y));
+        const QRgb *linhaA = reinterpret_cast<const QRgb *>(a.scanLine(y));
+        QRgb *linhaR = reinterpret_cast<QRgb *>(resultado.scanLine(y));
 
         for (int x = 0; x < a.width(); ++x) {
             int r = qBound(0, qRed(linhaA[x]) * valor, 255);
@@ -85,8 +85,8 @@ QImage Aritmetica::dividir(const QImage &img, int valor)
     QImage resultado(a.size(), QImage::Format_RGB32);
 
     for (int y = 0; y < a.height(); ++y) {
-        const QRgb *linhaA = reinterpret_cast<const QRgb*>(a.scanLine(y));
-        QRgb *linhaR = reinterpret_cast<QRgb*>(resultado.scanLine(y));
+        const QRgb *linhaA = reinterpret_cast<const QRgb *>(a.scanLine(y));
+        QRgb *linhaR = reinterpret_cast<QRgb *>(resultado.scanLine(y));
 
         for (int x = 0; x < a.width(); ++x) {
             int r = qBound(0, qRed(linhaA[x]) / valor, 255);

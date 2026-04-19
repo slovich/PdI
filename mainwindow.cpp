@@ -64,9 +64,11 @@ MainWindow::MainWindow(QWidget *parent)
     filemodel_2->setNameFilterDisables(false);
     filemodel_3->setNameFilters(filtros);
     filemodel_3->setNameFilterDisables(false);
+    validator_2 =  new QDoubleValidator;
+    ui->lineEdit_x->setValidator(validator_2);
     /*Valida os dados de entrada para multiplicação e divisão de imagens por escalar*/
     validator = new QIntValidator(0, 255, this);
-    ui->lineEdit_valor->setValidator(validator);
+    ui->lineEdit_valor->setValidator(validator);    
     /*Garante a visibiidade inicial correta na página de operações aritiméticas*/
     ui->groupBox_2->setVisible(false);
     selected_aritimethic_image_1 = false;
@@ -750,6 +752,73 @@ void MainWindow::on_pushButton_translado_horizontal_clicked()
     TransformacaoGeometrica *tg = new TransformacaoGeometrica;
     //Aplica a rotação na imagem
     QImage resultado = tg->transladarHorizontal(imagem_original, deslocamento_x);
+    // Exibe resultado no label da imagem processada
+    ui->label_imagem_tg_modificada->setPixmap(
+        QPixmap::fromImage(resultado).scaled(ui->label_imagem_tg_modificada->size(),
+                                             Qt::KeepAspectRatio,
+                                             Qt::SmoothTransformation));
+    ui->label_imagem_tg_modificada->setScaledContents(false);
+}
+
+void MainWindow::on_pushButton_alongamento_compressao_horizontal_clicked()
+{
+    // Verifica se há imagem original carregada
+    QPixmap pixmap = ui->label_imagem_tg_original->pixmap();
+    if (!pixmap || pixmap.isNull()) {
+        QMessageBox::warning(this,
+                             "Imagem não selecionada",
+                             "Selecione uma imagem válida antes de aplicar o algoritmo.");
+        return;
+    }
+    //Verifica se o fator multiplicativo é válido
+    if(ui->lineEdit_x->text().toDouble()>10) {
+        QMessageBox::warning(this,
+                             "Valor inválido!",
+                             "Selecione um fator multiplicativo entre 0 e 10.");
+        return;
+    }
+    // Converte para QImage
+    QImage imagem_original = pixmap.toImage();
+    // Lê o valor em graus em que a imagem deve ser rotacionada
+    double fator_multiplicativo = ui->lineEdit_x->text().toDouble();
+    // Cria objeto Transformação de Geométrica
+    TransformacaoGeometrica *tg = new TransformacaoGeometrica;
+    //Aplica a rotação na imagem
+    QImage resultado = tg->alongarHorizontal(imagem_original, fator_multiplicativo);
+    // Exibe resultado no label da imagem processada
+    ui->label_imagem_tg_modificada->setPixmap(
+        QPixmap::fromImage(resultado).scaled(ui->label_imagem_tg_modificada->size(),
+                                             Qt::KeepAspectRatio,
+                                             Qt::SmoothTransformation));
+    ui->label_imagem_tg_modificada->setScaledContents(false);
+}
+
+
+void MainWindow::on_pushButton_alongamento_compressao_vertical_clicked()
+{
+    // Verifica se há imagem original carregada
+    QPixmap pixmap = ui->label_imagem_tg_original->pixmap();
+    if (!pixmap || pixmap.isNull()) {
+        QMessageBox::warning(this,
+                             "Imagem não selecionada",
+                             "Selecione uma imagem válida antes de aplicar o algoritmo.");
+        return;
+    }
+    //Verifica se o fator multiplicativo é válido
+    if(ui->lineEdit_y->text().toDouble()>10) {
+        QMessageBox::warning(this,
+                             "Valor inválido!",
+                             "Selecione um fator multiplicativo entre 0 e 10.");
+        return;
+    }
+    // Converte para QImage
+    QImage imagem_original = pixmap.toImage();
+    // Lê o valor em graus em que a imagem deve ser rotacionada
+    double fator_multiplicativo = ui->lineEdit_x->text().toDouble();
+    // Cria objeto Transformação de Geométrica
+    TransformacaoGeometrica *tg = new TransformacaoGeometrica;
+    //Aplica a rotação na imagem
+    QImage resultado = tg->alongarVertical(imagem_original, fator_multiplicativo);
     // Exibe resultado no label da imagem processada
     ui->label_imagem_tg_modificada->setPixmap(
         QPixmap::fromImage(resultado).scaled(ui->label_imagem_tg_modificada->size(),

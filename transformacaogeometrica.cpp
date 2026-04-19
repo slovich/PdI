@@ -153,3 +153,65 @@ QImage TransformacaoGeometrica::transladarHorizontal(const QImage &imagem, int p
     }
     return resultado;
 }
+
+// Alongamento/Compressão Horizontal
+QImage TransformacaoGeometrica::alongarHorizontal(const QImage &imagem, double fator)
+{
+    if (fator <= 0.0) return imagem; // evita valores inválidos
+    int w = imagem.width();
+    int h = imagem.height();
+    // Calcula nova largura
+    int novaLargura = qRound(w * fator);
+    // Cria imagem redimensionada
+    QImage resultado(novaLargura, h, QImage::Format_ARGB32);
+    resultado.fill(Qt::transparent);
+    QPainter painter(&resultado);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
+    painter.drawImage(resultado.rect(), imagem);
+    painter.end();
+    return aplicarFiltroSuavizacao(resultado);
+}
+
+// Alongamento/Compressão Vertical
+QImage TransformacaoGeometrica::alongarVertical(const QImage &imagem, double fator)
+{
+    if (fator <= 0.0) return imagem; // evita valores inválidos
+    int w = imagem.width();
+    int h = imagem.height();
+    // Calcula nova altura
+    int novaAltura = qRound(h * fator);
+    // Cria imagem redimensionada
+    QImage resultado(w, novaAltura, QImage::Format_ARGB32);
+    resultado.fill(Qt::transparent);
+    QPainter painter(&resultado);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
+    painter.drawImage(resultado.rect(), imagem);
+    painter.end();
+    return aplicarFiltroSuavizacao(resultado);
+}
+
+// Função auxiliar de suavização (filtro de média simples 3x3)
+QImage TransformacaoGeometrica::aplicarFiltroSuavizacao(const QImage &imagem)
+{
+    QImage suavizada = imagem.copy();
+    int w = imagem.width();
+    int h = imagem.height();
+    for (int y = 1; y < h - 1; ++y) {
+        for (int x = 1; x < w - 1; ++x) {
+            int somaR = 0, somaG = 0, somaB = 0;
+            for (int j = -1; j <= 1; ++j) {
+                for (int i = -1; i <= 1; ++i) {
+                    QRgb pixel = imagem.pixel(x + i, y + j);
+                    somaR += qRed(pixel);
+                    somaG += qGreen(pixel);
+                    somaB += qBlue(pixel);
+                }
+            }
+            int mediaR = somaR / 9;
+            int mediaG = somaG / 9;
+            int mediaB = somaB / 9;
+            suavizada.setPixel(x, y, qRgb(mediaR, mediaG, mediaB));
+        }
+    }
+    return suavizada;
+}

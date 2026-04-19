@@ -53,22 +53,21 @@ private slots:
     void setDefaultImages();
     void on_pushButton_selecionar_imagem_geometrica_clicked();
     void on_pushButton__rotacionar_imagem_geometrica_clicked();
-
     void on_pushButton_manter_alteracao_clicked();
-
     void on_pushButton_espelhamento_vertical_clicked();
-
     void on_pushButton_espelhamento_horizontal_clicked();
-
     void on_pushButton_translado_vertical_clicked();
-
     void on_pushButton_translado_horizontal_clicked();
+    void on_pushButton_alongamento_compressao_horizontal_clicked();
+
+    void on_pushButton_alongamento_compressao_vertical_clicked();
 
 private:
     Ui::MainWindow *ui;
     QFileSystemModel *dirmodel, *dirmodel_1, *dirmodel_2, *dirmodel_3;
     QFileSystemModel *filemodel, *filemodel_1, *filemodel_2, *filemodel_3;
     QIntValidator *validator;
+    QDoubleValidator *validator_2;
     bool selected_aritimethic_image_1, selected_aritimethic_image_2;
 };
 #endif // MAINWINDOW_H

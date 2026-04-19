@@ -23,6 +23,15 @@ public:
 
     //Translação horizontal de imagens
     QImage transladarHorizontal(const QImage &imagem, int percentual);
+
+    //Altera a largura da imagem por um fator multiplicativo.
+    QImage alongarHorizontal(const QImage &imagem, double fator);
+
+    //Altera a altura da imagem por um fator multiplicativo.
+    QImage alongarVertical(const QImage &imagem, double fator);
+
+    // Função auxiliar de suavização
+    QImage aplicarFiltroSuavizacao(const QImage &imagem);
 };
 
 #endif // TRANSFORMACAOGEOMETRICA_H

@@ -1091,7 +1091,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <number>1</number>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Transformaçõe Geométricas&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Transformações Geométricas&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="textFormat">
        <enum>Qt::TextFormat::RichText</enum>
@@ -1282,7 +1282,7 @@ r</string>
          </layout>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_transformar_imagem_geometrica">
+         <widget class="QPushButton" name="pushButton_alongamento_compressao_horizontal">
           <property name="text">
            <string>Aplicar</string>
           </property>
@@ -1315,7 +1315,7 @@ r</string>
          </layout>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_transformar_imagem_geometrica_2">
+         <widget class="QPushButton" name="pushButton_alongamento_compressao_vertical">
           <property name="text">
            <string>Aplicar</string>
           </property>

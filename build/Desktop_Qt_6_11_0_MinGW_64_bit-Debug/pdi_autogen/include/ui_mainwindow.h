@@ -173,13 +173,13 @@ public:
     QHBoxLayout *horizontalLayout_3;
     QLabel *label_x;
     QLineEdit *lineEdit_x;
-    QPushButton *pushButton_transformar_imagem_geometrica;
+    QPushButton *pushButton_alongamento_compressao_horizontal;
     QWidget *widget2;
     QHBoxLayout *horizontalLayout_15;
     QHBoxLayout *horizontalLayout_13;
     QLabel *label_y;
     QLineEdit *lineEdit_y;
-    QPushButton *pushButton_transformar_imagem_geometrica_2;
+    QPushButton *pushButton_alongamento_compressao_vertical;
     QGroupBox *groupBox_10;
     QWidget *widget3;
     QVBoxLayout *verticalLayout_14;
@@ -804,10 +804,10 @@ public:
 
         horizontalLayout_14->addLayout(horizontalLayout_3);
 
-        pushButton_transformar_imagem_geometrica = new QPushButton(widget1);
-        pushButton_transformar_imagem_geometrica->setObjectName("pushButton_transformar_imagem_geometrica");
+        pushButton_alongamento_compressao_horizontal = new QPushButton(widget1);
+        pushButton_alongamento_compressao_horizontal->setObjectName("pushButton_alongamento_compressao_horizontal");
 
-        horizontalLayout_14->addWidget(pushButton_transformar_imagem_geometrica);
+        horizontalLayout_14->addWidget(pushButton_alongamento_compressao_horizontal);
 
         widget2 = new QWidget(groupBox_9);
         widget2->setObjectName("widget2");
@@ -832,10 +832,10 @@ public:
 
         horizontalLayout_15->addLayout(horizontalLayout_13);
 
-        pushButton_transformar_imagem_geometrica_2 = new QPushButton(widget2);
-        pushButton_transformar_imagem_geometrica_2->setObjectName("pushButton_transformar_imagem_geometrica_2");
+        pushButton_alongamento_compressao_vertical = new QPushButton(widget2);
+        pushButton_alongamento_compressao_vertical->setObjectName("pushButton_alongamento_compressao_vertical");
 
-        horizontalLayout_15->addWidget(pushButton_transformar_imagem_geometrica_2);
+        horizontalLayout_15->addWidget(pushButton_alongamento_compressao_vertical);
 
         groupBox_10 = new QGroupBox(page_5);
         groupBox_10->setObjectName("groupBox_10");
@@ -1041,7 +1041,7 @@ public:
         label_arquivo_imagem_2->setText(QCoreApplication::translate("MainWindow", "Arquivo", nullptr));
         label_diretorio_imagem_2->setText(QCoreApplication::translate("MainWindow", "Diret\303\263rio:", nullptr));
         pushButton_selecionar_cancelar_aritimetica->setText(QCoreApplication::translate("MainWindow", "Cancelar", nullptr));
-        label_titulo1_3->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ff0000;\">Transforma\303\247\303\265e Geom\303\251tricas</span></p></body></html>", nullptr));
+        label_titulo1_3->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ff0000;\">Transforma\303\247\303\265es Geom\303\251tricas</span></p></body></html>", nullptr));
         groupBox_6->setTitle(QCoreApplication::translate("MainWindow", "Rota\303\247\303\243o", nullptr));
         label_graus->setText(QCoreApplication::translate("MainWindow", "Graus:", nullptr));
         pushButton__rotacionar_imagem_geometrica->setText(QCoreApplication::translate("MainWindow", "Aplicar", nullptr));
@@ -1057,9 +1057,9 @@ public:
         pushButton_translado_horizontal->setText(QCoreApplication::translate("MainWindow", "Aplicar", nullptr));
         groupBox_9->setTitle(QCoreApplication::translate("MainWindow", "Alongamento e Compress\303\243o", nullptr));
         label_x->setText(QCoreApplication::translate("MainWindow", "X", nullptr));
-        pushButton_transformar_imagem_geometrica->setText(QCoreApplication::translate("MainWindow", "Aplicar", nullptr));
+        pushButton_alongamento_compressao_horizontal->setText(QCoreApplication::translate("MainWindow", "Aplicar", nullptr));
         label_y->setText(QCoreApplication::translate("MainWindow", "Y", nullptr));
-        pushButton_transformar_imagem_geometrica_2->setText(QCoreApplication::translate("MainWindow", "Aplicar", nullptr));
+        pushButton_alongamento_compressao_vertical->setText(QCoreApplication::translate("MainWindow", "Aplicar", nullptr));
         groupBox_10->setTitle(QCoreApplication::translate("MainWindow", "Espelhamento", nullptr));
         pushButton_espelhamento_vertical->setText(QCoreApplication::translate("MainWindow", "Vertical", nullptr));
         pushButton_espelhamento_horizontal->setText(QCoreApplication::translate("MainWindow", "Horizontal", nullptr));

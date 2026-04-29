@@ -47,11 +47,6 @@ Soma: duas imagens A e B de 300×200. Para cada pixel (x,y):
 * g = qBound(0, qGreen(A(x,y)) + qGreen(B(x,y)), 255)
 * b = qBound(0, qBlue(A(x,y)) + qBlue(B(x,y)), 255)
 
-Observações e recomendações de uso
-- Para operações que podem saturar (como multiplicação por valores altos), considere normalizar ou usar tipos com maior profundidade antes de converter de volta para 8 bits por canal.
-- Valide entradas (por exemplo, divisor diferente de zero) antes de chamar os métodos dividir.
-- Quando combinar imagens de tamanhos diferentes, avalie se o redimensionamento por scaled() é a estratégia desejada (pode-se preferir recorte ou centralização dependendo do caso de uso).
-
 Métodos da Classe Aritmética — descrição detalhada
 A classe Aritmética utiliza-se das facilidades do framework Qt para manipulação direta de QImage e não é implementada como uma classe C++ “pura” sem dependências. Ela dispõe de quatro métodos públicos principais:
 - Adição de imagens — QImage Aritmetica::somar(const QImage &img1, const QImage &img2)

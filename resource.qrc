@@ -8,5 +8,6 @@
         <file>resource/img/quantizacao.png</file>
         <file>resource/img/ico_mainwindow.ico</file>
         <file>resource/img/geometrica.png</file>
+        <file>resource/img/filtros.png</file>
     </qresource>
 </RCC>

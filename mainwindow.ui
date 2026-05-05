@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>6</number>
+     <number>7</number>
     </property>
     <widget class="QWidget" name="quantization">
      <widget class="QLabel" name="label_titulo1">
@@ -593,7 +593,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:700; color:#ff0000;&quot;&gt;PdI&lt;/span&gt;&lt;span style=&quot; font-size:22pt; font-weight:700;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Processamento de Imagens 1.2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:700; color:#ff0000;&quot;&gt;PdI&lt;/span&gt;&lt;span style=&quot; font-size:22pt; font-weight:700;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Processamento de Imagens 1.3&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
      <widget class="QTextEdit" name="textEdit">
@@ -1109,7 +1109,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <property name="title">
        <string>Rotação</string>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -1257,7 +1257,7 @@ r</string>
       <property name="title">
        <string>Alongamento e Compressão</string>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -1290,7 +1290,7 @@ r</string>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -1336,7 +1336,7 @@ r</string>
       <property name="title">
        <string>Espelhamento</string>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -1405,7 +1405,7 @@ r</string>
        </rect>
       </property>
       <property name="title">
-       <string>Imagem Original</string>
+       <string>Imagem Modificada</string>
       </property>
       <widget class="QLabel" name="label_imagem_tg_modificada">
        <property name="geometry">
@@ -1498,6 +1498,459 @@ r</string>
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="page_6">
+     <widget class="QLabel" name="label_titulo1_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>521</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Times New Roman</family>
+        <pointsize>24</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Sunken</enum>
+      </property>
+      <property name="midLineWidth">
+       <number>1</number>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Filtros de Média, Mediana e CLAHE&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::TextFormat::RichText</enum>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_13">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>481</width>
+        <height>231</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <widget class="QGroupBox" name="groupBox_14">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>160</y>
+         <width>100</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Kernel</string>
+       </property>
+       <widget class="QSpinBox" name="spinBox_kernel">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>80</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="readOnly">
+         <bool>false</bool>
+        </property>
+        <property name="minimum">
+         <number>3</number>
+        </property>
+        <property name="maximum">
+         <number>13</number>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_15">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>60</y>
+         <width>101</width>
+         <height>101</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Tipo de Bordas</string>
+       </property>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>81</width>
+          <height>74</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_18">
+         <item>
+          <widget class="QRadioButton" name="radioButton_zerar_borda">
+           <property name="text">
+            <string>Zerar</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_replicar_borda">
+           <property name="text">
+            <string>Replicar</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_refletir_borda">
+           <property name="text">
+            <string>Refletir</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_16">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>60</y>
+         <width>101</width>
+         <height>101</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Canais</string>
+       </property>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>81</width>
+          <height>74</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_19">
+         <item>
+          <widget class="QCheckBox" name="checkBox_red">
+           <property name="text">
+            <string>Red</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_green">
+           <property name="text">
+            <string>Green</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_blue">
+           <property name="text">
+            <string>Blue</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_17">
+       <property name="geometry">
+        <rect>
+         <x>230</x>
+         <y>60</y>
+         <width>101</width>
+         <height>101</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Clip Limit</string>
+       </property>
+       <widget class="QSpinBox" name="spinBox_clip_limit">
+        <property name="geometry">
+         <rect>
+          <x>5</x>
+          <y>40</y>
+          <width>91</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+        <property name="stepType">
+         <enum>QAbstractSpinBox::StepType::DefaultStepType</enum>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_18">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>160</y>
+         <width>100</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>TGS - Largura</string>
+       </property>
+       <widget class="QSpinBox" name="spinBox_tgs_largura">
+        <property name="geometry">
+         <rect>
+          <x>5</x>
+          <y>20</y>
+          <width>91</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>4</number>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_19">
+       <property name="geometry">
+        <rect>
+         <x>230</x>
+         <y>160</y>
+         <width>100</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>TGS -Altura</string>
+       </property>
+       <widget class="QSpinBox" name="spinBox_tgs_altura">
+        <property name="geometry">
+         <rect>
+          <x>5</x>
+          <y>20</y>
+          <width>91</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>4</number>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QPushButton" name="pushButton_aplicar_filtro">
+       <property name="geometry">
+        <rect>
+         <x>350</x>
+         <y>174</y>
+         <width>111</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>APLICAR</string>
+       </property>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_22">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>461</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Filtro</string>
+       </property>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>441</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_16">
+         <item>
+          <widget class="QRadioButton" name="radioButton_filtro_media">
+           <property name="text">
+            <string>Média</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_filtro_mediana">
+           <property name="text">
+            <string>Mediana</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_filtro_CLAHE">
+           <property name="text">
+            <string>CLAHE</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="pushButton_selecionar_imagem_filtro">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>30</y>
+        <width>101</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Aplicar</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget_6">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>60</y>
+        <width>258</width>
+        <height>216</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_20">
+       <item>
+        <widget class="QLabel" name="label_diretorio_imagem_geometrica_2">
+         <property name="text">
+          <string>Diretório:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTreeView" name="treeView_diretorio_imagem_filtro"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="layoutWidget_7">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>300</y>
+        <width>258</width>
+        <height>216</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_21">
+       <item>
+        <widget class="QLabel" name="label_arquivo_imagem_geometrica_2">
+         <property name="text">
+          <string>Arquivo</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QListView" name="listView_arquivo_imagem_filtro"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_20">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>300</y>
+        <width>221</width>
+        <height>231</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Imagem Original</string>
+      </property>
+      <widget class="QLabel" name="label_imagem_filtro_original">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>200</width>
+         <height>200</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="resource.qrc">:/img/resource/img/default_img.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_21">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>300</y>
+        <width>221</width>
+        <height>231</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Imagem Modificada</string>
+      </property>
+      <widget class="QLabel" name="label_imagem_filtro_modificada">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>200</width>
+         <height>200</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="resource.qrc">:/img/resource/img/default_img.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -1529,6 +1982,7 @@ r</string>
     <addaction name="actionQuantizacao_2"/>
     <addaction name="actionAritimetica"/>
     <addaction name="actionGeometrica"/>
+    <addaction name="actionFiltros"/>
    </widget>
    <addaction name="menuArquivo"/>
    <addaction name="menuFerramentas"/>
@@ -1600,6 +2054,11 @@ r</string>
   <action name="actionGeometrica">
    <property name="text">
     <string>Transf. Geométrica</string>
+   </property>
+  </action>
+  <action name="actionFiltros">
+   <property name="text">
+    <string>Filtros</string>
    </property>
   </action>
  </widget>

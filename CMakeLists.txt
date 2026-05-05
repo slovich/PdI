@@ -30,6 +30,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${APP_ICON_RESOURCE}
         aritmetica.h aritmetica.cpp
         transformacaogeometrica.h transformacaogeometrica.cpp
+        filtroimagem.h filtroimagem.cpp
     )
 
 

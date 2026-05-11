@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "formhistograma.h"
 #include "./ui_mainwindow.h"
 #include "aritmetica.h"
 #include "quantizacao.h"
@@ -892,12 +893,14 @@ void MainWindow::showCLAHEOptions(bool show)
         ui->groupBox_17->setVisible(true);
         ui->groupBox_18->setVisible(true);
         ui->groupBox_19->setVisible(true);
+        ui->groupBox_14->setVisible(false);
     }
     else
     {
         ui->groupBox_17->setVisible(false);
         ui->groupBox_18->setVisible(false);
         ui->groupBox_19->setVisible(false);
+        ui->groupBox_14->setVisible(true);
     }
 }
 
@@ -1030,3 +1033,9 @@ void MainWindow::on_pushButton_selecionar_imagem_filtro_clicked()
                              "Selecione um arquivo de imagem válido (jpg, jpeg, png, bmp, tiff).");
     }
 }
+void MainWindow::on_pushButton_histograma_4_clicked()
+{
+    FormHistograma histograma(ui->label_imagem_filtro_original->pixmap().toImage(), ui->label_imagem_filtro_modificada->pixmap().toImage(), this);
+    histograma.exec();
+}
+

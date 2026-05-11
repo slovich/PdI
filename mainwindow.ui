@@ -1688,7 +1688,7 @@ r</string>
          <x>230</x>
          <y>60</y>
          <width>101</width>
-         <height>101</height>
+         <height>51</height>
         </rect>
        </property>
        <property name="title">
@@ -1697,8 +1697,8 @@ r</string>
        <widget class="QSpinBox" name="spinBox_clip_limit">
         <property name="geometry">
          <rect>
-          <x>5</x>
-          <y>40</y>
+          <x>4</x>
+          <y>18</y>
           <width>91</width>
           <height>22</height>
          </rect>
@@ -1717,10 +1717,10 @@ r</string>
       <widget class="QGroupBox" name="groupBox_18">
        <property name="geometry">
         <rect>
-         <x>120</x>
-         <y>160</y>
+         <x>230</x>
+         <y>110</y>
          <width>100</width>
-         <height>61</height>
+         <height>51</height>
         </rect>
        </property>
        <property name="title">
@@ -1734,6 +1734,9 @@ r</string>
           <width>91</width>
           <height>22</height>
          </rect>
+        </property>
+        <property name="toolTip">
+         <string>Tile Grid Size - Lagura</string>
         </property>
         <property name="minimum">
          <number>4</number>
@@ -1761,6 +1764,9 @@ r</string>
           <height>22</height>
          </rect>
         </property>
+        <property name="toolTip">
+         <string>Tile Grid Size - Altura</string>
+        </property>
         <property name="minimum">
          <number>4</number>
         </property>
@@ -1769,8 +1775,8 @@ r</string>
       <widget class="QPushButton" name="pushButton_aplicar_filtro">
        <property name="geometry">
         <rect>
-         <x>350</x>
-         <y>174</y>
+         <x>340</x>
+         <y>90</y>
          <width>111</width>
          <height>41</height>
         </rect>
@@ -1827,6 +1833,19 @@ r</string>
          </item>
         </layout>
        </widget>
+      </widget>
+      <widget class="QPushButton" name="pushButton_histograma_4">
+       <property name="geometry">
+        <rect>
+         <x>340</x>
+         <y>150</y>
+         <width>111</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>HISTOGRAMA</string>
+       </property>
       </widget>
      </widget>
      <widget class="QPushButton" name="pushButton_selecionar_imagem_filtro">

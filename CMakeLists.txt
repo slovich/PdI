@@ -31,6 +31,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         aritmetica.h aritmetica.cpp
         transformacaogeometrica.h transformacaogeometrica.cpp
         filtroimagem.h filtroimagem.cpp
+        formhistograma.h formhistograma.cpp formhistograma.ui
+        histogramaimagem.h histogramaimagem.cpp
     )
 
 

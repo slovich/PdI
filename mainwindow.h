@@ -73,6 +73,8 @@ private slots:
     void on_pushButton_aplicar_filtro_clicked();
     void on_pushButton_selecionar_imagem_filtro_clicked();
 
+    void on_pushButton_histograma_4_clicked();
+
 private:
     Ui::MainWindow *ui;
     QFileSystemModel *dirmodel, *dirmodel_1, *dirmodel_2, *dirmodel_3, *dirmodel_4;

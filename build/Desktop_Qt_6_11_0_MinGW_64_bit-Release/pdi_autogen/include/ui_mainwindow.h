@@ -219,8 +219,6 @@ public:
     QCheckBox *checkBox_red;
     QCheckBox *checkBox_green;
     QCheckBox *checkBox_blue;
-    QGroupBox *groupBox_17;
-    QSpinBox *spinBox_clip_limit;
     QGroupBox *groupBox_18;
     QSpinBox *spinBox_tgs_largura;
     QGroupBox *groupBox_19;
@@ -231,8 +229,28 @@ public:
     QHBoxLayout *horizontalLayout_16;
     QRadioButton *radioButton_filtro_media;
     QRadioButton *radioButton_filtro_mediana;
+    QRadioButton *radioButton_filtro_maximo;
+    QRadioButton *radioButton_filtro_minimo;
+    QRadioButton *radioButton_filtro_gausiano;
     QRadioButton *radioButton_filtro_CLAHE;
     QPushButton *pushButton_histograma_4;
+    QGroupBox *groupBox_23;
+    QWidget *layoutWidget14;
+    QHBoxLayout *horizontalLayout_17;
+    QVBoxLayout *verticalLayout_22;
+    QRadioButton *radioButton_vizinhanca_quadrada;
+    QRadioButton *radioButton_vizinhanca_circular;
+    QVBoxLayout *verticalLayout_23;
+    QRadioButton *radioButton_vizinhanca_cruz;
+    QRadioButton *radioButton_vizinhanca_eliptico;
+    QWidget *layoutWidget15;
+    QVBoxLayout *verticalLayout_24;
+    QLabel *label_matriz;
+    QLineEdit *lineEdit_matriz;
+    QGroupBox *groupBox_24;
+    QComboBox *comboBox_desvio_padrao;
+    QGroupBox *groupBox_17;
+    QSpinBox *spinBox_clip_limit;
     QPushButton *pushButton_selecionar_imagem_filtro;
     QWidget *layoutWidget_6;
     QVBoxLayout *verticalLayout_20;
@@ -1035,32 +1053,23 @@ public:
 
         verticalLayout_19->addWidget(checkBox_blue);
 
-        groupBox_17 = new QGroupBox(groupBox_13);
-        groupBox_17->setObjectName("groupBox_17");
-        groupBox_17->setGeometry(QRect(230, 60, 101, 51));
-        spinBox_clip_limit = new QSpinBox(groupBox_17);
-        spinBox_clip_limit->setObjectName("spinBox_clip_limit");
-        spinBox_clip_limit->setGeometry(QRect(4, 18, 91, 22));
-        spinBox_clip_limit->setMinimum(1);
-        spinBox_clip_limit->setMaximum(100);
-        spinBox_clip_limit->setStepType(QAbstractSpinBox::StepType::DefaultStepType);
         groupBox_18 = new QGroupBox(groupBox_13);
         groupBox_18->setObjectName("groupBox_18");
-        groupBox_18->setGeometry(QRect(230, 110, 100, 51));
+        groupBox_18->setGeometry(QRect(340, 110, 100, 51));
         spinBox_tgs_largura = new QSpinBox(groupBox_18);
         spinBox_tgs_largura->setObjectName("spinBox_tgs_largura");
         spinBox_tgs_largura->setGeometry(QRect(5, 20, 91, 22));
         spinBox_tgs_largura->setMinimum(4);
         groupBox_19 = new QGroupBox(groupBox_13);
         groupBox_19->setObjectName("groupBox_19");
-        groupBox_19->setGeometry(QRect(230, 160, 100, 61));
+        groupBox_19->setGeometry(QRect(340, 60, 100, 51));
         spinBox_tgs_altura = new QSpinBox(groupBox_19);
         spinBox_tgs_altura->setObjectName("spinBox_tgs_altura");
         spinBox_tgs_altura->setGeometry(QRect(5, 20, 91, 22));
         spinBox_tgs_altura->setMinimum(4);
         pushButton_aplicar_filtro = new QPushButton(groupBox_13);
         pushButton_aplicar_filtro->setObjectName("pushButton_aplicar_filtro");
-        pushButton_aplicar_filtro->setGeometry(QRect(340, 90, 111, 41));
+        pushButton_aplicar_filtro->setGeometry(QRect(340, 200, 101, 20));
         groupBox_22 = new QGroupBox(groupBox_13);
         groupBox_22->setObjectName("groupBox_22");
         groupBox_22->setGeometry(QRect(10, 10, 461, 51));
@@ -1081,6 +1090,21 @@ public:
 
         horizontalLayout_16->addWidget(radioButton_filtro_mediana);
 
+        radioButton_filtro_maximo = new QRadioButton(layoutWidget13);
+        radioButton_filtro_maximo->setObjectName("radioButton_filtro_maximo");
+
+        horizontalLayout_16->addWidget(radioButton_filtro_maximo);
+
+        radioButton_filtro_minimo = new QRadioButton(layoutWidget13);
+        radioButton_filtro_minimo->setObjectName("radioButton_filtro_minimo");
+
+        horizontalLayout_16->addWidget(radioButton_filtro_minimo);
+
+        radioButton_filtro_gausiano = new QRadioButton(layoutWidget13);
+        radioButton_filtro_gausiano->setObjectName("radioButton_filtro_gausiano");
+
+        horizontalLayout_16->addWidget(radioButton_filtro_gausiano);
+
         radioButton_filtro_CLAHE = new QRadioButton(layoutWidget13);
         radioButton_filtro_CLAHE->setObjectName("radioButton_filtro_CLAHE");
 
@@ -1088,7 +1112,85 @@ public:
 
         pushButton_histograma_4 = new QPushButton(groupBox_13);
         pushButton_histograma_4->setObjectName("pushButton_histograma_4");
-        pushButton_histograma_4->setGeometry(QRect(340, 150, 111, 41));
+        pushButton_histograma_4->setGeometry(QRect(340, 170, 101, 21));
+        groupBox_23 = new QGroupBox(groupBox_13);
+        groupBox_23->setObjectName("groupBox_23");
+        groupBox_23->setGeometry(QRect(120, 160, 211, 61));
+        layoutWidget14 = new QWidget(groupBox_23);
+        layoutWidget14->setObjectName("layoutWidget14");
+        layoutWidget14->setGeometry(QRect(4, 14, 150, 50));
+        horizontalLayout_17 = new QHBoxLayout(layoutWidget14);
+        horizontalLayout_17->setObjectName("horizontalLayout_17");
+        horizontalLayout_17->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_22 = new QVBoxLayout();
+        verticalLayout_22->setObjectName("verticalLayout_22");
+        radioButton_vizinhanca_quadrada = new QRadioButton(layoutWidget14);
+        radioButton_vizinhanca_quadrada->setObjectName("radioButton_vizinhanca_quadrada");
+        radioButton_vizinhanca_quadrada->setChecked(true);
+
+        verticalLayout_22->addWidget(radioButton_vizinhanca_quadrada);
+
+        radioButton_vizinhanca_circular = new QRadioButton(layoutWidget14);
+        radioButton_vizinhanca_circular->setObjectName("radioButton_vizinhanca_circular");
+
+        verticalLayout_22->addWidget(radioButton_vizinhanca_circular);
+
+
+        horizontalLayout_17->addLayout(verticalLayout_22);
+
+        verticalLayout_23 = new QVBoxLayout();
+        verticalLayout_23->setObjectName("verticalLayout_23");
+        radioButton_vizinhanca_cruz = new QRadioButton(layoutWidget14);
+        radioButton_vizinhanca_cruz->setObjectName("radioButton_vizinhanca_cruz");
+
+        verticalLayout_23->addWidget(radioButton_vizinhanca_cruz);
+
+        radioButton_vizinhanca_eliptico = new QRadioButton(layoutWidget14);
+        radioButton_vizinhanca_eliptico->setObjectName("radioButton_vizinhanca_eliptico");
+
+        verticalLayout_23->addWidget(radioButton_vizinhanca_eliptico);
+
+
+        horizontalLayout_17->addLayout(verticalLayout_23);
+
+        layoutWidget15 = new QWidget(groupBox_23);
+        layoutWidget15->setObjectName("layoutWidget15");
+        layoutWidget15->setGeometry(QRect(160, 10, 41, 46));
+        verticalLayout_24 = new QVBoxLayout(layoutWidget15);
+        verticalLayout_24->setObjectName("verticalLayout_24");
+        verticalLayout_24->setContentsMargins(0, 0, 0, 0);
+        label_matriz = new QLabel(layoutWidget15);
+        label_matriz->setObjectName("label_matriz");
+
+        verticalLayout_24->addWidget(label_matriz);
+
+        lineEdit_matriz = new QLineEdit(layoutWidget15);
+        lineEdit_matriz->setObjectName("lineEdit_matriz");
+        lineEdit_matriz->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
+
+        verticalLayout_24->addWidget(lineEdit_matriz);
+
+        groupBox_24 = new QGroupBox(groupBox_13);
+        groupBox_24->setObjectName("groupBox_24");
+        groupBox_24->setGeometry(QRect(230, 110, 101, 51));
+        comboBox_desvio_padrao = new QComboBox(groupBox_24);
+        comboBox_desvio_padrao->addItem(QString());
+        comboBox_desvio_padrao->addItem(QString());
+        comboBox_desvio_padrao->addItem(QString());
+        comboBox_desvio_padrao->addItem(QString());
+        comboBox_desvio_padrao->addItem(QString());
+        comboBox_desvio_padrao->addItem(QString());
+        comboBox_desvio_padrao->setObjectName("comboBox_desvio_padrao");
+        comboBox_desvio_padrao->setGeometry(QRect(10, 20, 81, 22));
+        groupBox_17 = new QGroupBox(groupBox_13);
+        groupBox_17->setObjectName("groupBox_17");
+        groupBox_17->setGeometry(QRect(230, 60, 101, 51));
+        spinBox_clip_limit = new QSpinBox(groupBox_17);
+        spinBox_clip_limit->setObjectName("spinBox_clip_limit");
+        spinBox_clip_limit->setGeometry(QRect(4, 18, 91, 22));
+        spinBox_clip_limit->setMinimum(1);
+        spinBox_clip_limit->setMaximum(100);
+        spinBox_clip_limit->setStepType(QAbstractSpinBox::StepType::DefaultStepType);
         pushButton_selecionar_imagem_filtro = new QPushButton(page_6);
         pushButton_selecionar_imagem_filtro->setObjectName("pushButton_selecionar_imagem_filtro");
         pushButton_selecionar_imagem_filtro->setGeometry(QRect(670, 30, 101, 24));
@@ -1235,7 +1337,7 @@ public:
 
         pushButton_aplicar_cm->setText(QCoreApplication::translate("MainWindow", "Aplicar Corte Mediano", nullptr));
         pushButton_cancelar_algoritmo->setText(QCoreApplication::translate("MainWindow", "Cancelar", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:22pt; font-weight:700; color:#ff0000;\">PdI</span><span style=\" font-size:22pt; font-weight:700;\"><br/></span><span style=\" font-size:22pt;\">Processamento de Imagens 1.3</span></p></body></html>", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:22pt; font-weight:700; color:#ff0000;\">PdI</span><span style=\" font-size:22pt; font-weight:700;\"><br/></span><span style=\" font-size:22pt;\">Processamento de Imagens 1.4</span></p></body></html>", nullptr));
         textEdit->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -1303,7 +1405,7 @@ public:
         label_diretorio_imagem_geometrica->setText(QCoreApplication::translate("MainWindow", "Diret\303\263rio:", nullptr));
         label_arquivo_imagem_geometrica->setText(QCoreApplication::translate("MainWindow", "Arquivo", nullptr));
         pushButton_selecionar_imagem_geometrica->setText(QCoreApplication::translate("MainWindow", "Aplicar", nullptr));
-        label_titulo1_4->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ff0000;\">Filtros de M\303\251dia, Mediana e CLAHE</span></p></body></html>", nullptr));
+        label_titulo1_4->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ff0000;\">Filtros de Imagem</span></p></body></html>", nullptr));
         groupBox_13->setTitle(QString());
         groupBox_14->setTitle(QCoreApplication::translate("MainWindow", "Kernel", nullptr));
         groupBox_15->setTitle(QCoreApplication::translate("MainWindow", "Tipo de Bordas", nullptr));
@@ -1314,7 +1416,6 @@ public:
         checkBox_red->setText(QCoreApplication::translate("MainWindow", "Red", nullptr));
         checkBox_green->setText(QCoreApplication::translate("MainWindow", "Green", nullptr));
         checkBox_blue->setText(QCoreApplication::translate("MainWindow", "Blue", nullptr));
-        groupBox_17->setTitle(QCoreApplication::translate("MainWindow", "Clip Limit", nullptr));
         groupBox_18->setTitle(QCoreApplication::translate("MainWindow", "TGS - Largura", nullptr));
 #if QT_CONFIG(tooltip)
         spinBox_tgs_largura->setToolTip(QCoreApplication::translate("MainWindow", "Tile Grid Size - Lagura", nullptr));
@@ -1327,8 +1428,30 @@ public:
         groupBox_22->setTitle(QCoreApplication::translate("MainWindow", "Filtro", nullptr));
         radioButton_filtro_media->setText(QCoreApplication::translate("MainWindow", "M\303\251dia", nullptr));
         radioButton_filtro_mediana->setText(QCoreApplication::translate("MainWindow", "Mediana", nullptr));
+        radioButton_filtro_maximo->setText(QCoreApplication::translate("MainWindow", "M\303\241ximo", nullptr));
+        radioButton_filtro_minimo->setText(QCoreApplication::translate("MainWindow", "M\303\255nimo", nullptr));
+        radioButton_filtro_gausiano->setText(QCoreApplication::translate("MainWindow", "Gausiano", nullptr));
         radioButton_filtro_CLAHE->setText(QCoreApplication::translate("MainWindow", "CLAHE", nullptr));
         pushButton_histograma_4->setText(QCoreApplication::translate("MainWindow", "HISTOGRAMA", nullptr));
+        groupBox_23->setTitle(QCoreApplication::translate("MainWindow", "Vizinhan\303\247a", nullptr));
+        radioButton_vizinhanca_quadrada->setText(QCoreApplication::translate("MainWindow", "Quadrado", nullptr));
+        radioButton_vizinhanca_circular->setText(QCoreApplication::translate("MainWindow", "Circular", nullptr));
+        radioButton_vizinhanca_cruz->setText(QCoreApplication::translate("MainWindow", "Cruz", nullptr));
+        radioButton_vizinhanca_eliptico->setText(QCoreApplication::translate("MainWindow", "El\303\255ptico", nullptr));
+        label_matriz->setText(QCoreApplication::translate("MainWindow", "Matriz:", nullptr));
+#if QT_CONFIG(tooltip)
+        lineEdit_matriz->setToolTip(QCoreApplication::translate("MainWindow", "Escolha um valor ente 3 e 15", nullptr));
+#endif // QT_CONFIG(tooltip)
+        lineEdit_matriz->setText(QCoreApplication::translate("MainWindow", "3", nullptr));
+        groupBox_24->setTitle(QCoreApplication::translate("MainWindow", "Desvio Padr\303\243o", nullptr));
+        comboBox_desvio_padrao->setItemText(0, QCoreApplication::translate("MainWindow", "0.5", nullptr));
+        comboBox_desvio_padrao->setItemText(1, QCoreApplication::translate("MainWindow", "1.0", nullptr));
+        comboBox_desvio_padrao->setItemText(2, QCoreApplication::translate("MainWindow", "1.5", nullptr));
+        comboBox_desvio_padrao->setItemText(3, QCoreApplication::translate("MainWindow", "2.0", nullptr));
+        comboBox_desvio_padrao->setItemText(4, QCoreApplication::translate("MainWindow", "2.5", nullptr));
+        comboBox_desvio_padrao->setItemText(5, QCoreApplication::translate("MainWindow", "3.0", nullptr));
+
+        groupBox_17->setTitle(QCoreApplication::translate("MainWindow", "Clip Limit", nullptr));
         pushButton_selecionar_imagem_filtro->setText(QCoreApplication::translate("MainWindow", "Aplicar", nullptr));
         label_diretorio_imagem_geometrica_2->setText(QCoreApplication::translate("MainWindow", "Diret\303\263rio:", nullptr));
         label_arquivo_imagem_geometrica_2->setText(QCoreApplication::translate("MainWindow", "Arquivo", nullptr));

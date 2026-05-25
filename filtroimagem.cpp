@@ -43,6 +43,45 @@ QImage FiltroImagem::tratarBordas(const QImage& imagem, int kernelSize, int bord
     return expandida;
 }
 
+//Método de identificação da vizinhança de um pixel
+bool FiltroImagem::dentroVizinhanca(int kx, int ky, int offset, int formaVizinhanca)
+{
+    switch (formaVizinhanca) {
+    case 0: // Quadrado
+        return true;
+    case 1: // Circular
+        return (kx*kx + ky*ky) <= (offset*offset);
+    case 2: // Cruz
+        return (kx == 0 || ky == 0);
+    case 3: // Elíptico
+        return ((kx*kx)/(offset*offset*1.0) + (ky*ky)/(offset*offset*1.0)) <= 1.0;
+    default:
+        return true;
+    }
+}
+
+std::vector<std::vector<double>> FiltroImagem::gerarMascaraGaussiana(int kernelSize, double sigma) {
+    int offset = kernelSize / 2;
+    std::vector<std::vector<double>> kernel(kernelSize, std::vector<double>(kernelSize));
+    double soma = 0.0;
+
+    for (int y = -offset; y <= offset; ++y) {
+        for (int x = -offset; x <= offset; ++x) {
+            double valor = std::exp(-(x*x + y*y) / (2 * sigma * sigma));
+            kernel[y + offset][x + offset] = valor;
+            soma += valor;
+        }
+    }
+
+    // Normalização
+    for (int y = 0; y < kernelSize; ++y) {
+        for (int x = 0; x < kernelSize; ++x) {
+            kernel[y][x] /= soma;
+        }
+    }
+    return kernel;
+}
+
 // Método para aplicar filtro de média
 QImage FiltroImagem::filtroMedia(const QImage& imagem, int kernelSize, int borderType,
                                  bool aplicarR, bool aplicarG, bool aplicarB)
@@ -164,6 +203,186 @@ QImage FiltroImagem::filtroMedianaGrayscale(const QImage& imagem, int kernelSize
             int intensidade = valores[valores.size()/2];
 
             resultado.setPixel(x - offset, y - offset, qRgb(intensidade, intensidade, intensidade));
+        }
+    }
+    return resultado;
+}
+
+QImage FiltroImagem::filtroMaximo(const QImage& imagem, int matriz, int borderType,
+                                  bool aplicarR, bool aplicarG, bool aplicarB, int formaVizinhanca)
+{
+    QImage img = tratarBordas(imagem, matriz, borderType);
+    QImage resultado(img.size(), QImage::Format_RGB32);
+
+    int offset = matriz / 2;
+
+    for (int y = offset; y < img.height() - offset; ++y) {
+        for (int x = offset; x < img.width() - offset; ++x) {
+            int maxR = 0, maxG = 0, maxB = 0;
+
+            for (int ky = -offset; ky <= offset; ++ky) {
+                const QRgb* linha = reinterpret_cast<const QRgb*>(img.scanLine(y + ky));
+                for (int kx = -offset; kx <= offset; ++kx) {
+                    if (!dentroVizinhanca(kx, ky, offset, formaVizinhanca)) continue;
+                    QRgb pixel = linha[x + kx];
+                    if (aplicarR) maxR = std::max(maxR, qRed(pixel));
+                    if (aplicarG) maxG = std::max(maxG, qGreen(pixel));
+                    if (aplicarB) maxB = std::max(maxB, qBlue(pixel));
+                }
+            }
+
+            QRgb original = img.pixel(x, y);
+            int r = aplicarR ? maxR : qRed(original);
+            int g = aplicarG ? maxG : qGreen(original);
+            int b = aplicarB ? maxB : qBlue(original);
+
+            resultado.setPixel(x, y, qRgb(r, g, b));
+        }
+    }
+    return resultado;
+}
+
+QImage FiltroImagem::filtroMaximoGrayscale(const QImage& imagem, int matriz, int borderType, int formaVizinhanca)
+{
+    QImage img = tratarBordas(imagem, matriz, borderType);
+    QImage resultado(img.size(), QImage::Format_Grayscale8);
+
+    int offset = matriz / 2;
+
+    for (int y = offset; y < img.height() - offset; ++y) {
+        for (int x = offset; x < img.width() - offset; ++x) {
+            int maxVal = 0;
+
+            for (int ky = -offset; ky <= offset; ++ky) {
+                const uchar* linha = img.scanLine(y + ky);
+                for (int kx = -offset; kx <= offset; ++kx) {
+                    if (!dentroVizinhanca(kx, ky, offset, formaVizinhanca)) continue;
+                    int val = linha[x + kx];
+                    maxVal = std::max(maxVal, val);
+                }
+            }
+            resultado.setPixel(x, y, qRgb(maxVal, maxVal, maxVal));
+        }
+    }
+    return resultado;
+}
+
+QImage FiltroImagem::filtroMinimo(const QImage& imagem, int matriz, int borderType,
+                                  bool aplicarR, bool aplicarG, bool aplicarB, int formaVizinhanca)
+{
+    QImage img = tratarBordas(imagem, matriz, borderType);
+    QImage resultado(img.size(), QImage::Format_RGB32);
+
+    int offset = matriz / 2;
+
+    for (int y = offset; y < img.height() - offset; ++y) {
+        for (int x = offset; x < img.width() - offset; ++x) {
+            int minR = 255, minG = 255, minB = 255;
+
+            for (int ky = -offset; ky <= offset; ++ky) {
+                const QRgb* linha = reinterpret_cast<const QRgb*>(img.scanLine(y + ky));
+                for (int kx = -offset; kx <= offset; ++kx) {
+                    if (!dentroVizinhanca(kx, ky, offset, formaVizinhanca)) continue;
+                    QRgb pixel = linha[x + kx];
+                    if (aplicarR) minR = std::min(minR, qRed(pixel));
+                    if (aplicarG) minG = std::min(minG, qGreen(pixel));
+                    if (aplicarB) minB = std::min(minB, qBlue(pixel));
+                }
+            }
+
+            QRgb original = img.pixel(x, y);
+            int r = aplicarR ? minR : qRed(original);
+            int g = aplicarG ? minG : qGreen(original);
+            int b = aplicarB ? minB : qBlue(original);
+
+            resultado.setPixel(x, y, qRgb(r, g, b));
+        }
+    }
+    return resultado;
+}
+
+QImage FiltroImagem::filtroMinimoGrayscale(const QImage& imagem, int matriz, int borderType, int formaVizinhanca)
+{
+    QImage img = tratarBordas(imagem, matriz, borderType);
+    QImage resultado(img.size(), QImage::Format_Grayscale8);
+
+    int offset = matriz / 2;
+
+    for (int y = offset; y < img.height() - offset; ++y) {
+        for (int x = offset; x < img.width() - offset; ++x) {
+            int minVal = 255;
+
+            for (int ky = -offset; ky <= offset; ++ky) {
+                const uchar* linha = img.scanLine(y + ky);
+                for (int kx = -offset; kx <= offset; ++kx) {
+                    if (!dentroVizinhanca(kx, ky, offset, formaVizinhanca)) continue;
+                    int val = linha[x + kx];
+                    minVal = std::min(minVal, val);
+                }
+            }
+            resultado.setPixel(x, y, qRgb(minVal, minVal, minVal));
+        }
+    }
+    return resultado;
+}
+
+QImage FiltroImagem::filtroGaussiano(const QImage& imagem, int kernelSize, double sigma,
+                                     int borderType, bool aplicarR, bool aplicarG, bool aplicarB)
+{
+    QImage img = tratarBordas(imagem, kernelSize, borderType);
+    QImage resultado(img.size(), QImage::Format_RGB32);
+
+    auto kernel = gerarMascaraGaussiana(kernelSize, sigma);
+    int offset = kernelSize / 2;
+
+    for (int y = offset; y < img.height() - offset; ++y) {
+        for (int x = offset; x < img.width() - offset; ++x) {
+            double somaR = 0, somaG = 0, somaB = 0;
+
+            for (int ky = -offset; ky <= offset; ++ky) {
+                const QRgb* linha = reinterpret_cast<const QRgb*>(img.scanLine(y + ky));
+                for (int kx = -offset; kx <= offset; ++kx) {
+                    QRgb pixel = linha[x + kx];
+                    double peso = kernel[ky + offset][kx + offset];
+                    if (aplicarR) somaR += qRed(pixel) * peso;
+                    if (aplicarG) somaG += qGreen(pixel) * peso;
+                    if (aplicarB) somaB += qBlue(pixel) * peso;
+                }
+            }
+
+            QRgb original = img.pixel(x, y);
+            int r = aplicarR ? static_cast<int>(somaR) : qRed(original);
+            int g = aplicarG ? static_cast<int>(somaG) : qGreen(original);
+            int b = aplicarB ? static_cast<int>(somaB) : qBlue(original);
+
+            resultado.setPixel(x, y, qRgb(r, g, b));
+        }
+    }
+    return resultado;
+}
+
+QImage FiltroImagem::filtroGaussianoGrayscale(const QImage& imagem, int kernelSize, double sigma, int borderType)
+{
+    QImage img = tratarBordas(imagem, kernelSize, borderType);
+    QImage resultado(img.size(), QImage::Format_Grayscale8);
+
+    auto kernel = gerarMascaraGaussiana(kernelSize, sigma);
+    int offset = kernelSize / 2;
+
+    for (int y = offset; y < img.height() - offset; ++y) {
+        for (int x = offset; x < img.width() - offset; ++x) {
+            double soma = 0;
+
+            for (int ky = -offset; ky <= offset; ++ky) {
+                const uchar* linha = img.scanLine(y + ky);
+                for (int kx = -offset; kx <= offset; ++kx) {
+                    int val = linha[x + kx];
+                    double peso = kernel[ky + offset][kx + offset];
+                    soma += val * peso;
+                }
+            }
+            int valorFinal = static_cast<int>(soma);
+            resultado.setPixel(x, y, qRgb(valorFinal, valorFinal, valorFinal));
         }
     }
     return resultado;

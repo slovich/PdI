@@ -28,6 +28,8 @@ private slots:
     void inicializarModels(QString, QStringList);
     void inicializarValidators();
     void showCLAHEOptions(bool show);
+    void showMaxMinOptions(bool show);
+    void showGausianOptions(bool show);
     void showStartAritimeticOptions();
     void on_pushButton_selecionar_clicked();                                            //Método ao se clicar no botão de selecionar após escolher uma imagem
     void on_pushButton_procurar_clicked();                                              //Método ao se clicar no botão de procurar imagem
@@ -72,14 +74,16 @@ private slots:
     void on_radioButton_filtro_mediana_clicked();
     void on_pushButton_aplicar_filtro_clicked();
     void on_pushButton_selecionar_imagem_filtro_clicked();
-
     void on_pushButton_histograma_4_clicked();
+    void on_radioButton_filtro_maximo_clicked();
+    void on_radioButton_filtro_minimo_clicked();
+    void on_radioButton_filtro_gausiano_clicked();
 
 private:
     Ui::MainWindow *ui;
     QFileSystemModel *dirmodel, *dirmodel_1, *dirmodel_2, *dirmodel_3, *dirmodel_4;
     QFileSystemModel *filemodel, *filemodel_1, *filemodel_2, *filemodel_3, *filemodel_4;
-    QIntValidator *validator;
+    QIntValidator *validator, *validator_3;
     QDoubleValidator *validator_2;
     bool selected_aritimethic_image_1, selected_aritimethic_image_2;
     QString caminho;

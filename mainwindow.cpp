@@ -19,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent)
     inicializarToolBar();
     showStartAritimeticOptions();
     showCLAHEOptions(false);
+    showMaxMinOptions(false);
+    showGausianOptions(false);
 }
 
 MainWindow::~MainWindow()
@@ -107,7 +109,9 @@ void MainWindow::inicializarValidators()
     ui->lineEdit_x->setValidator(validator_2);
     /*Valida os dados de entrada para multiplicação e divisão de imagens por escalar*/
     validator = new QIntValidator(0, 255, this);
+    validator_3 = new QIntValidator(3, 15, this);
     ui->lineEdit_valor->setValidator(validator);
+    ui->lineEdit_matriz->setValidator(validator_3);
 }
 
 void MainWindow::setDefaultImages()
@@ -904,20 +908,58 @@ void MainWindow::showCLAHEOptions(bool show)
     }
 }
 
+void MainWindow::showMaxMinOptions(bool show)
+{
+    ui->groupBox_23->setVisible(show);
+    ui->groupBox_14->setVisible(!show);
+}
+
+void MainWindow::showGausianOptions(bool show)
+{
+    ui->groupBox_24->setVisible(show);
+    ui->groupBox_14->setVisible(!show);
+}
+
 void MainWindow::on_radioButton_filtro_CLAHE_clicked()
 {
     showCLAHEOptions(true);
+    showMaxMinOptions(false);
+    showGausianOptions(false);
 }
 
 void MainWindow::on_radioButton_filtro_media_clicked()
 {
     showCLAHEOptions(false);
+    showMaxMinOptions(false);
+    showGausianOptions(false);
 }
 
 void MainWindow::on_radioButton_filtro_mediana_clicked()
 {
     showCLAHEOptions(false);
+    showMaxMinOptions(false);
+    showGausianOptions(false);
+}
 
+void MainWindow::on_radioButton_filtro_maximo_clicked()
+{
+    showCLAHEOptions(false);
+    showMaxMinOptions(true);
+    showGausianOptions(false);
+}
+
+void MainWindow::on_radioButton_filtro_minimo_clicked()
+{
+    showCLAHEOptions(false);
+    showMaxMinOptions(true);
+    showGausianOptions(false);
+}
+
+void MainWindow::on_radioButton_filtro_gausiano_clicked()
+{
+    showCLAHEOptions(false);
+    showMaxMinOptions(false);
+    showGausianOptions(true);
 }
 
 void MainWindow::on_pushButton_aplicar_filtro_clicked()
@@ -985,6 +1027,72 @@ void MainWindow::on_pushButton_aplicar_filtro_clicked()
                                           ui->checkBox_red->isChecked(),
                                           ui->checkBox_green->isChecked(),
                                           ui->checkBox_blue->isChecked());
+        }
+        ui->label_imagem_filtro_modificada->setPixmap(
+            QPixmap::fromImage(resultado).scaled(ui->label_imagem_filtro_modificada->size(),
+                                                 Qt::KeepAspectRatio,
+                                                 Qt::SmoothTransformation));
+        ui->label_imagem_filtro_modificada->setScaledContents(false);
+    }
+    if(ui->radioButton_filtro_maximo->isChecked())
+    {
+        int vizinhanca;
+        ui->radioButton_vizinhanca_quadrada->isChecked() ? vizinhanca = 0 : ui->radioButton_vizinhanca_circular->isChecked() ? vizinhanca = 1 : ui->radioButton_vizinhanca_cruz->isChecked() ? vizinhanca = 2 : vizinhanca = 3;
+        if(pixmap.toImage().isGrayscale())
+        {
+            resultado = fi->filtroMaximoGrayscale(imagem_original, ui->lineEdit_matriz->text().toInt(), tipo_borda, vizinhanca);
+        }
+        else
+        {
+            resultado = fi->filtroMaximo(imagem_original, ui->lineEdit_matriz->text().toInt(), tipo_borda,
+                                        ui->checkBox_red->isChecked(),
+                                        ui->checkBox_green->isChecked(),
+                                        ui->checkBox_blue->isChecked(),
+                                         vizinhanca);
+        }
+        ui->label_imagem_filtro_modificada->setPixmap(
+            QPixmap::fromImage(resultado).scaled(ui->label_imagem_filtro_modificada->size(),
+                                                 Qt::KeepAspectRatio,
+                                                 Qt::SmoothTransformation));
+        ui->label_imagem_filtro_modificada->setScaledContents(false);
+    }
+    if(ui->radioButton_filtro_minimo->isChecked())
+    {
+        int vizinhanca;
+        ui->radioButton_vizinhanca_quadrada->isChecked() ? vizinhanca = 0 : ui->radioButton_vizinhanca_circular->isChecked() ? vizinhanca = 1 : ui->radioButton_vizinhanca_cruz->isChecked() ? vizinhanca = 2 : vizinhanca = 3;
+        if(pixmap.toImage().isGrayscale())
+        {
+            resultado = fi->filtroMinimoGrayscale(imagem_original, ui->lineEdit_matriz->text().toInt(), tipo_borda, vizinhanca);
+        }
+        else
+        {
+            resultado = fi->filtroMinimo(imagem_original, ui->lineEdit_matriz->text().toInt(), tipo_borda,
+                                         ui->checkBox_red->isChecked(),
+                                         ui->checkBox_green->isChecked(),
+                                         ui->checkBox_blue->isChecked(),
+                                         vizinhanca);
+        }
+        ui->label_imagem_filtro_modificada->setPixmap(
+            QPixmap::fromImage(resultado).scaled(ui->label_imagem_filtro_modificada->size(),
+                                                 Qt::KeepAspectRatio,
+                                                 Qt::SmoothTransformation));
+        ui->label_imagem_filtro_modificada->setScaledContents(false);
+    }
+    if(ui->radioButton_filtro_gausiano->isChecked())
+    {
+        int kernel;
+        double sigma = ui->comboBox_desvio_padrao->currentText().toDouble();
+        sigma <= 1.0 ? kernel = 7 : sigma >1 && sigma <= 2 ? kernel = 13 : kernel = 19;
+        if(pixmap.toImage().isGrayscale())
+        {
+            resultado = fi->filtroGaussianoGrayscale(imagem_original, kernel, sigma, tipo_borda);
+        }
+        else
+        {
+            resultado = fi->filtroGaussiano(imagem_original, kernel, sigma, tipo_borda,
+                                         ui->checkBox_red->isChecked(),
+                                         ui->checkBox_green->isChecked(),
+                                         ui->checkBox_blue->isChecked());
         }
         ui->label_imagem_filtro_modificada->setPixmap(
             QPixmap::fromImage(resultado).scaled(ui->label_imagem_filtro_modificada->size(),

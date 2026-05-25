@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>7</number>
     </property>
     <widget class="QWidget" name="quantization">
      <widget class="QLabel" name="label_titulo1">
@@ -1528,7 +1528,7 @@ r</string>
        <number>1</number>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Filtros de Média, Mediana e CLAHE&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Filtros de Imagem&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="textFormat">
        <enum>Qt::TextFormat::RichText</enum>
@@ -1682,42 +1682,10 @@ r</string>
         </layout>
        </widget>
       </widget>
-      <widget class="QGroupBox" name="groupBox_17">
-       <property name="geometry">
-        <rect>
-         <x>230</x>
-         <y>60</y>
-         <width>101</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="title">
-        <string>Clip Limit</string>
-       </property>
-       <widget class="QSpinBox" name="spinBox_clip_limit">
-        <property name="geometry">
-         <rect>
-          <x>4</x>
-          <y>18</y>
-          <width>91</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="minimum">
-         <number>1</number>
-        </property>
-        <property name="maximum">
-         <number>100</number>
-        </property>
-        <property name="stepType">
-         <enum>QAbstractSpinBox::StepType::DefaultStepType</enum>
-        </property>
-       </widget>
-      </widget>
       <widget class="QGroupBox" name="groupBox_18">
        <property name="geometry">
         <rect>
-         <x>230</x>
+         <x>340</x>
          <y>110</y>
          <width>100</width>
          <height>51</height>
@@ -1746,10 +1714,10 @@ r</string>
       <widget class="QGroupBox" name="groupBox_19">
        <property name="geometry">
         <rect>
-         <x>230</x>
-         <y>160</y>
+         <x>340</x>
+         <y>60</y>
          <width>100</width>
-         <height>61</height>
+         <height>51</height>
         </rect>
        </property>
        <property name="title">
@@ -1776,9 +1744,9 @@ r</string>
        <property name="geometry">
         <rect>
          <x>340</x>
-         <y>90</y>
-         <width>111</width>
-         <height>41</height>
+         <y>200</y>
+         <width>101</width>
+         <height>20</height>
         </rect>
        </property>
        <property name="text">
@@ -1825,6 +1793,27 @@ r</string>
           </widget>
          </item>
          <item>
+          <widget class="QRadioButton" name="radioButton_filtro_maximo">
+           <property name="text">
+            <string>Máximo</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_filtro_minimo">
+           <property name="text">
+            <string>Mínimo</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_filtro_gausiano">
+           <property name="text">
+            <string>Gausiano</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QRadioButton" name="radioButton_filtro_CLAHE">
            <property name="text">
             <string>CLAHE</string>
@@ -1838,14 +1827,195 @@ r</string>
        <property name="geometry">
         <rect>
          <x>340</x>
-         <y>150</y>
-         <width>111</width>
-         <height>41</height>
+         <y>170</y>
+         <width>101</width>
+         <height>21</height>
         </rect>
        </property>
        <property name="text">
         <string>HISTOGRAMA</string>
        </property>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_23">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>160</y>
+         <width>211</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Vizinhança</string>
+       </property>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>4</x>
+          <y>14</y>
+          <width>150</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_17">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_22">
+           <item>
+            <widget class="QRadioButton" name="radioButton_vizinhanca_quadrada">
+             <property name="text">
+              <string>Quadrado</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="radioButton_vizinhanca_circular">
+             <property name="text">
+              <string>Circular</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_23">
+           <item>
+            <widget class="QRadioButton" name="radioButton_vizinhanca_cruz">
+             <property name="text">
+              <string>Cruz</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="radioButton_vizinhanca_eliptico">
+             <property name="text">
+              <string>Elíptico</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>10</y>
+          <width>41</width>
+          <height>46</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_24">
+         <item>
+          <widget class="QLabel" name="label_matriz">
+           <property name="text">
+            <string>Matriz:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_matriz">
+           <property name="toolTip">
+            <string>Escolha um valor ente 3 e 15</string>
+           </property>
+           <property name="text">
+            <string>3</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_24">
+       <property name="geometry">
+        <rect>
+         <x>230</x>
+         <y>110</y>
+         <width>101</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Desvio Padrão</string>
+       </property>
+       <widget class="QComboBox" name="comboBox_desvio_padrao">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>81</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>0.5</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>1.0</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>1.5</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>2.0</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>2.5</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>3.0</string>
+         </property>
+        </item>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_17">
+       <property name="geometry">
+        <rect>
+         <x>230</x>
+         <y>60</y>
+         <width>101</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Clip Limit</string>
+       </property>
+       <widget class="QSpinBox" name="spinBox_clip_limit">
+        <property name="geometry">
+         <rect>
+          <x>4</x>
+          <y>18</y>
+          <width>91</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+        <property name="stepType">
+         <enum>QAbstractSpinBox::StepType::DefaultStepType</enum>
+        </property>
+       </widget>
       </widget>
      </widget>
      <widget class="QPushButton" name="pushButton_selecionar_imagem_filtro">

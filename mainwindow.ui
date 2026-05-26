@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>7</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="quantization">
      <widget class="QLabel" name="label_titulo1">
@@ -593,7 +593,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:700; color:#ff0000;&quot;&gt;PdI&lt;/span&gt;&lt;span style=&quot; font-size:22pt; font-weight:700;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Processamento de Imagens 1.4&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:700; color:#ff0000;&quot;&gt;PdI&lt;/span&gt;&lt;span style=&quot; font-size:22pt; font-weight:700;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Processamento de Imagens 1.32&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
      <widget class="QTextEdit" name="textEdit">
@@ -1904,7 +1904,7 @@ r</string>
          <rect>
           <x>160</x>
           <y>10</y>
-          <width>41</width>
+          <width>57</width>
           <height>46</height>
          </rect>
         </property>

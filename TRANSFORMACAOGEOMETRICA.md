@@ -1,107 +1,130 @@
-A Classe TransformacaoGeometrica
+# Transformação Geométrica
 
-Dependência  
-A classe TransformacaoGeometrica depende do framework Qt e utiliza QImage, QPainter e utilitários de QtMath para realizar transformações geométricas em imagens. Não é uma implementação C++ pura sem dependências; para uso fora do Qt seria necessário reescrever com bibliotecas alternativas (por exemplo, OpenCV).
+Esta classe implementa métodos para a manipulação espacial e geométrica de imagens digitais, alterando as coordenadas dos pixels ou a escala da imagem usando as ferramentas de renderização e desenho da biblioteca Qt.
 
-Objetivo  
-Fornecer um conjunto de operações geométricas básicas sobre imagens: rotação, espelhamento vertical e horizontal, translação vertical e horizontal, e alongamento/compressão em ambas as direções, além de um filtro auxiliar de suavização. As operações retornam novas QImage sem modificar a imagem de entrada.
+---
 
-Funcionamento geral
-- Entrada: QImage fornecida pelo chamador e parâmetros específicos (ângulo, percentual, fator).
-- Processamento: cada método converte ou assume formatos adequados, calcula dimensões e posições destino, e realiza cópias ou desenhos pixel a pixel ou via QPainter.
-- Saída: nova QImage contendo o resultado da transformação.
-- Exibição: o resultado pode ser convertido para QPixmap e exibido em QLabel conforme a interface do projeto.
-- Preenchimento: áreas vazias resultantes de deslocamentos ou redimensionamentos são preenchidas com transparência por padrão (ou podem ser alteradas para cor sólida se desejado).
-- Desempenho: operações que iteram pixels usam scanLine() quando apropriado para acesso eficiente à memória; operações de desenho e redimensionamento usam QPainter com SmoothPixmapTransform para melhor qualidade.
+## Método 1: Rotação
 
-Métodos públicos
-A classe dispõe dos seguintes métodos públicos principais:
-- Rotação — QImage rotacionar(const QImage &imagem, double graus)
-- Espelhamento vertical — QImage espelharVertical(const QImage &imagem)
-- Espelhamento horizontal — QImage espelharHorizontal(const QImage &imagem)
-- Translação vertical — QImage transladarVertical(const QImage &imagem, int percentual)
-- Translação horizontal — QImage transladarHorizontal(const QImage &imagem, int percentual)
-- Alongamento e compressão horizontal — QImage alongarHorizontal(const QImage &imagem, double fator)
-- Alongamento e compressão vertical — QImage alongarVertical(const QImage &imagem, double fator)
-- Filtro auxiliar de suavização — QImage aplicarFiltroSuavizacao(const QImage &imagem)
+### Lógica de Funcionamento
+- O método recebe um ângulo em graus e calcula as novas dimensões necessárias para que a imagem rotacionada caiba inteiramente no destino sem sofrer cortes periféricos.
+- Aplica uma transformação de rotação usando trigonometria com base no centro geométrico da imagem.
+- Utiliza a classe `QPainter` com anti-aliasing ativo para suavizar o mapeamento reverso de pixels e evitar o efeito de serrilhado nas bordas inclinadas.
 
-Métodos da Classe TransformacaoGeometrica — descrição detalhada
-A TransformacaoGeometrica utiliza recursos do Qt para manipulação de imagens e não é implementada como uma classe C++ independente de bibliotecas. A seguir descrevo, em linguagem natural, o algoritmo e o comportamento de cada método, passo a passo, incluindo decisões de implementação, tratamento de bordas e considerações de desempenho.
+### Formulação Matemática
+As novas coordenadas $(x', y')$ de um pixel rotacionado por um ângulo $\theta$ em relação a uma origem central são baseadas na matriz de rotação padrão:
+$$x' = x \cdot \cos(\theta) - y \cdot \sin(\theta)$$
+$$y' = x \cdot \sin(\theta) + y \cdot \cos(\theta)$$
 
-Rotação QImage rotacionar(const QImage &imagem, double graus)
-Objetivo  
-Rotacionar a imagem em torno do seu centro por um ângulo em graus, retornando uma nova imagem com dimensões suficientes para conter todos os pixels rotacionados.
-Fluxo e algoritmo
-1) Normalização do ângulo: o ângulo recebido é reduzido ao intervalo [0,360) usando fmod e ajuste para valores negativos.
-2) Cálculo trigonométrico: converte-se o ângulo para radianos e calcula-se cos e sin.
-3) Dimensões da imagem resultante: determina-se a largura e altura mínimas do retângulo que contém a imagem rotacionada usando as fórmulas que combinam |w*cos| + |h*sin| e |w*sin| + |h*cos|. Isso garante que nenhum pixel fique fora do quadro.
-4) Criação do buffer de saída: aloca-se uma QImage com as novas dimensões e fundo transparente.
-5) Desenho com QPainter: o sistema de coordenadas do QPainter é transladado para o centro da imagem de saída, aplica-se a rotação e então desenha-se a imagem original centralizada. SmoothPixmapTransform e Antialiasing são usados para melhorar a qualidade visual.
-6) Retorno: a imagem rotacionada é retornada.
+As novas dimensões da imagem ($W'$ e $H'$) para comportar a rotação total sem perdas são calculadas por:
+$$W' = |W \cdot \cos(\theta)| + |H \cdot \sin(\theta)|$$
+$$H' = |W \cdot \sin(\theta)| + |H \cdot \cos(\theta)|$$
 
-Espelhamento vertical QImage espelharVertical(const QImage &imagem)
-Objetivo  
-Inverter a imagem no eixo vertical (topo ↔ base), produzindo uma nova QImage.
-Fluxo e algoritmo
-1) Alocação do resultado: cria-se uma QImage com as mesmas dimensões e formato da original.
-2) Iteração por linhas: percorre-se cada linha y da imagem original.
-3) Cópia invertida de linhas: a linha y da imagem original é copiada para a linha h-1-y da imagem destino, preservando a ordem horizontal dos pixels. O acesso é feito via scanLine() para eficiência.
-4) Retorno: a imagem invertida verticalmente é retornada.
+### Exemplo Prático
+- **Imagem original**: Largura $W = 100$, Altura $H = 100$.
+- **Parâmetro**: Ângulo de $90^\circ$ ($\cos(90^\circ) = 0$, $\sin(90^\circ) = 1$).
+- **Cálculo de dimensões**: 
+  $$W' = |100 \cdot 0| + |100 \cdot 1| = 100$$
+  $$H' = |100 \cdot 1| + |100 \cdot 0| = 100$$
+- **Resultado**: A imagem é rotacionada perfeitamente em sentido horário, onde o topo original passa a ser a lateral direita.
 
-Espelhamento horizontal QImage espelharHorizontal(const QImage &imagem)
-Objetivo  
-Inverter a imagem no eixo horizontal (esquerda ↔ direita).
-Fluxo e algoritmo
-1) Alocação do resultado: cria-se uma QImage com as mesmas dimensões e formato.
-2) Iteração por linhas: para cada linha, copia-se cada pixel da coluna x para a coluna w-1-x na linha destino.
-3) Retorno: a imagem espelhada horizontalmente é retornada.
+### Análise Detalhada do Código (.cpp)
+1. **Normalização e Conversão Angular**: O código usa `fmod(graus, 360.0)` para garantir que o ângulo esteja no domínio de uma volta e o corrige caso seja negativo. Logo após, `qDegreesToRadians(graus)` converte o valor para radianos, exigência das funções trigonométricas de `QtMath`.
+2. **Cálculo de Delimitadores (Bounding Box)**: `int newW = qAbs(w * cosA) + qAbs(h * sinA);` projeta os quatro vértices originais mapeando a largura e altura máximas que a nova imagem precisará ter.
+3. **Instanciação do Canvas**: Cria-se um `QImage resultado` usando `QImage::Format_ARGB32` para suportar transparência alfa e o preenche com `Qt::transparent`. Isso impede que o fundo da rotação exiba lixo de memória ou blocos pretos rígidos.
+4. **Matriz de Transformação (`QPainter`)**: 
+   - `painter.translate(newW / 2.0, newH / 2.0);` move a origem do sistema de coordenadas $(0,0)$ do canto superior esquerdo para o centro da nova imagem.
+   - `painter.rotate(graus);` rotaciona o sistema de coordenadas inteiro com base no ângulo fornecido.
+   - `painter.drawImage(-w / 2.0, -h / 2.0, imagem);` projeta a imagem original centralizada retroativamente. O Qt cuida do mapeamento reverso dos pixels de forma nativa e performática.
 
-Translação vertical QImage transladarVertical(const QImage &imagem, int percentual)
-Objetivo  
-Deslocar a imagem verticalmente em função de um percentual no intervalo [−100,100], onde valores positivos deslocam para cima e negativos para baixo. O deslocamento é proporcional à altura da imagem.
-Fluxo e algoritmo
-1) Clamping do percentual: garante-se que o valor esteja entre -100 e 100.
-2) Cálculo do deslocamento em pixels: deslocamento = (percentual * altura) / 100.
-3) Criação do buffer de saída: nova QImage com as mesmas dimensões e preenchida com transparência.
-4) Cópia de linhas deslocadas: para cada linha y da imagem original calcula-se yDestino = y - deslocamento. Se yDestino estiver dentro do intervalo válido [0, h), a linha é copiada para essa posição; caso contrário, os pixels são descartados.
-5) Retorno: imagem deslocada verticalmente.
+### Impacto dos Parâmetros
+- **Ângulos oblíquos (não múltiplos de 90°)**: Geram grandes áreas vazias triangulares ao redor da imagem original, preenchidas por transparência.
+- **Render Hints (`Antialiasing`)**: Ativa a interpolação nas bordas externas do desenho, atenuando degraus visuais (serrilhado) à custa de um leve overhead de processamento.
 
-Translação horizontal QImage transladarHorizontal(const QImage &imagem, int percentual)
-Objetivo  
-Deslocar a imagem horizontalmente em função de um percentual no intervalo [−100,100], onde valores positivos deslocam para a direita e negativos para a esquerda.
-Fluxo e algoritmo
-1) Clamping do percentual: limita o valor ao intervalo permitido.
-2) Cálculo do deslocamento em pixels: deslocamento = (percentual * largura) / 100.
-3) Criação do buffer de saída: nova QImage com mesmas dimensões e transparência.
-4) Cópia de pixels deslocados: para cada pixel (x, y) calcula-se xDestino = x + deslocamento. Se xDestino estiver dentro de [0, w), o pixel é copiado; caso contrário, é descartado.
-5) Retorno: imagem deslocada horizontalmente.
+---
 
-Alongamento e compressão horizontal QImage alongarHorizontal(const QImage &imagem, double fator)
-Objetivo  
-Alterar a largura da imagem por um fator double positivo: valores maiores que 1 alongam (multiplicador), valores entre 0 e 1 comprimem (redução). O resultado é arredondado para inteiro com qRound.
-Fluxo e algoritmo
-1) Validação do fator: se fator <= 0 retorna-se a imagem original (evita dimensões inválidas).
-2) Cálculo da nova largura: novaLargura = qRound(largura * fator).
-3) Criação do buffer de saída: QImage com novaLargura e mesma altura; fundo transparente.
-4) Redesenho com QPainter: a imagem original é desenhada na nova área usando SmoothPixmapTransform para interpolação.
-5) Aplicação do filtro de suavização: chama-se o método auxiliar para reduzir artefatos (filtro de média 3×3).
-6) Retorno: imagem resultante.
+## Método 2: Espelhamento (Horizontal e Vertical)
 
-Alongamento e compressão vertical QImage alongarVertical(const QImage &imagem, double fator)
-Objetivo  
-Alterar a altura da imagem por um fator double positivo: valores maiores que 1 alongam; valores entre 0 e 1 comprimem. O resultado é arredondado com qRound.
-Fluxo e algoritmo
-1) Validação do fator: retorna a imagem original se fator <= 0.
-2) Cálculo da nova altura: novaAltura = qRound(altura * fator).
-3) Criação do buffer de saída: QImage com mesma largura e novaAltura.
-4) Redesenho com QPainter: desenha-se a imagem original na nova área com interpolação suave.
-5) Aplicação do filtro de suavização: aplica-se o filtro auxiliar para reduzir artefatos.
-6) Retorno: imagem resultante.
+### Lógica de Funcionamento
+- **Espelhamento Horizontal**: Inverte a imagem da esquerda para a direita, refletindo os dados ao redor do eixo vertical central.
+- **Espelhamento Vertical**: Inverte a imagem de cima para baixo, refletindo os dados ao redor do eixo horizontal central.
+- A transferência de dados ocorre através da varredura por linha onde os pixels simétricos trocam de posição.
 
-Filtro auxiliar de suavização QImage aplicarFiltroSuavizacao(const QImage &imagem)
-Objetivo  
-Reduzir serrilhado e transições bruscas após operações de redimensionamento usando um filtro simples e eficiente.
-Fluxo e algoritmo
-1) Cópia do buffer: cria-se uma cópia da imagem para escrever os resultados.
-2) Filtro de média 3×3: para cada pixel (exceto bordas) calcula-se a média dos 9 pixels vizinhos (R, G, B) e escreve-se o valor médio no pixel correspondente da imagem de saída.
-3) Retorno: imagem suavizada.
+### Formulação Matemática
+Mapeamento de coordenadas indexadas a zero:
+- **Horizontal**: $x' = W - 1 - x$ e $y' = y$
+- **Vertical**: $x' = x$ e $y' = H - 1 - y$
+
+### Exemplo Prático
+- **Imagem original**: Dimensão $W = 200$. Pixel sob análise localizado em $x = 10$.
+- **Espelhamento Horizontal**: 
+  $$x' = 200 - 1 - 10 = 189$$
+- **Resultado**: O pixel da coluna 10 é copiado diretamente para a coluna 189 da imagem de destino.
+
+### Análise Detalhada do Código (.cpp)
+1. **Estrutura de Loops Aninhados**: Ambos os métodos utilizam loops for externos iterando sobre a altura (`y`) e internos iterando sobre a largura (`x`).
+2. **Varredura e Escrita Direta**:
+   - No `espelharHorizontal`, o loop interno faz: `resultado.setPixel(x, y, imagem.pixel(w - 1 - x, y));`. Isso lê a imagem original de trás para frente no eixo X enquanto escreve de forma sequencial no destino.
+   - No `espelharVertical`, o mapeamento inverte a linha de origem: `resultado.setPixel(x, y, imagem.pixel(x, h - 1 - y));`.
+3. **Desempenho**: Este método opera em complexidade espacial e temporal $O(W \times H)$, alocando uma imagem idêntica em formato e copiando bit a bit cada pixel sem transformações matemáticas complexas.
+
+### Impacto dos Parâmetros
+- A operação preserva rigorosamente as dimensões, canais e proporções originais da imagem, alterando exclusivamente a orientação espacial do conteúdo.
+
+---
+
+## Método 3: Translação (Horizontal e Vertical)
+
+### Lógica de Funcionamento
+- Desloca espacialmente todos os pixels da imagem em uma direção linear com base em um valor percentual informado pelo usuário (-100% a +100%).
+- O espaço vazio deixado pela translação é intencionalmente preenchido com pixels transparentes para preservar o tamanho original da imagem e evitar artefatos de "fantasmas" ou repetição de bordas.
+
+### Formulação Matemática
+O deslocamento absoluto em pixels ($\Delta$) é calculado como uma fração da dimensão correspondente:
+$$\Delta_x = W \cdot \left(\frac{\text{percentual}}{100}\right) \quad \text{ou} \quad \Delta_y = H \cdot \left(\frac{\text{percentual}}{100}\right)$$
+
+Novas posições geradas: $x' = x + \Delta_x$ e $y' = y + \Delta_y$. Pixels cuja coordenada resultante fique fora do intervalo válido $[0, W-1]$ ou $[0, H-1]$ são descartados.
+
+### Exemplo Prático
+- **Imagem original**: $W = 400$. Percentual de translação horizontal informado = $+25\%$.
+- **Cálculo**: $\Delta_x = 400 \cdot 0.25 = +100$ pixels.
+- **Resultado**: Um pixel originalmente em $x = 50$ vai para $x' = 150$. As colunas resultantes de $0$ a $99$ serão preenchidas com transparência.
+
+### Análise Detalhada do Código (.cpp)
+1. **Cálculo do Deslocamento**: O código executa `int deslocamento = qRound(w * (static_cast<double>(percentual) / 100.0));` para converter o valor percentual em pixels inteiros com arredondamento seguro.
+2. **Inicialização Limpa**: A imagem de `resultado` é preenchida com `resultado.fill(Qt::transparent);`, limpando os buffers.
+3. **Loop de Mapeamento com Validação**:
+   - Durante a iteração por todos os pixels $(x, y)$, calcula-se a coordenada de origem: `int srcX = x - deslocamento;` (no caso horizontal).
+   - Uma condicional condensa a regra de decisão: `if (srcX >= 0 && srcX < w)`. Se a coordenada calculada pertencer à imagem original, o pixel é transportado via `resultado.setPixel(x, y, imagem.pixel(srcX, srcY));`. Caso contrário, o loop avança deixando o pixel com a transparência definida na inicialização.
+
+### Impacto dos Parâmetros
+- **Valores Extremos**: Valores percentuais próximos a 100% ou -100% empurram quase todo o conteúdo para fora da matriz visível, gerando imagens majoritariamente vazias.
+
+---
+
+## Método 4: Alongamento e Compressão (Escalonamento)
+
+### Lógica de Funcionamento
+- Redimensiona de forma independente a largura ou a altura da imagem aplicando um fator multiplicativo de escala.
+- Faz uso da classe `QPainter` combinada com flags de suavização gráfica para realizar a amostragem espacial e reconstrução através de interpolação bilinear.
+- Uma função auxiliar pós-processamento de suavização (filtro de média de tamanho fixo $3 \times 3$) é aplicada ao final do fluxo para atenuar imperfeições de subamostragem.
+
+### Formulação Matemática
+As novas dimensões resultantes são derivadas da multiplicação direta:
+$$W' = \text{qRound}(W \cdot \text{fator}) \quad \text{e} \quad H' = \text{qRound}(H \cdot \text{fator})$$
+
+### Exemplo Prático
+- **Imagem original**: Altura $H = 150$, Largura estável $W = 200$. Fator de alongamento vertical = $2.0$.
+- **Cálculo**: $H' = \text{qRound}(150 \cdot 2.0) = 300$.
+- **Resultado**: A imagem final terá dimensões $200 \times 300$, esticando verticalmente o conteúdo.
+
+### Análise Detalhada do Código (.cpp)
+1. **Validação de Entrada**: O método inicia testando `if (fator <= 0.0) return imagem;` prevenindo divisões por zero ou inversões espaciais negativas não tratadas pelo algoritmo.
+2. **Redimensionamento por Canvas Aberto**: Um `QPainter` é atrelado a um novo canvas ajustado (`novaLargura` ou `novaAltura`). 
+3. **Interpolação Nativa**: A instrução `painter.setRenderHint(QPainter::SmoothPixmapTransform);` força o framework Qt a abandonar o algoritmo invasivo do vizinho mais próximo (*Nearest Neighbor*) em prol de um mapeamento bilinear suavizado durante a execução de `painter.drawImage(resultado.rect(), imagem);`.
+4. **Filtro Auxiliar de Suavização**: O método retorna o resultado envelopado por `aplicarFiltroSuavizacao(resultado)`.
+   - **Dentro do Filtro Auxiliar**: Dois loops excluem as bordas externas (`for (int y = 1; y < h - 1; ++y)`). Para cada pixel interno, ele varre uma vizinhança de 9 pixels através de loops de offset `i` e `j` de $-1$ a $+1$. Soma os canais (`somaR += qRed(pixel);`, etc.) e divide por 9. Reconstrói o pixel através de `qRgb(somaR / 9, somaG / 9, somaB / 9)`. Isso reduz o efeito de aliasing (pixelado) gerado pela transformação.
+
+### Impacto dos Parâmetros
+- **Fatores $> 1.0$ (Alongamento)**: Amplia a imagem. Embora a interpolação atenue os blocos de pixels, o resultado pode perder nitidez (aspecto borrado).
+- **Fatores $< 1.0$ (Compressão)**: Encolhe a imagem, provocando perda irreversível de altas frequências espaciais (detalhes finos).

@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     showCLAHEOptions(false);
     showMaxMinOptions(false);
     showGausianOptions(false);
+    showStartDitheringOptions();
 }
 
 MainWindow::~MainWindow()
@@ -34,10 +35,12 @@ void MainWindow::inicializarToolBar()
     ui->toolBar->addAction(ui->actionAritimetica);
     ui->toolBar->addAction(ui->actionGeometrica);
     ui->toolBar->addAction(ui->actionFiltros);
+    ui->toolBar->addAction(ui->actionDithering);
     ui->actionQuantizacao_2->setIcon(QIcon(":/img/resource/img/quantizacao.png"));
     ui->actionAritimetica->setIcon(QIcon(":/img/resource/img/aritimetico.png"));
     ui->actionGeometrica->setIcon(QIcon(":/img/resource/img/geometrica.png"));
     ui->actionFiltros->setIcon(QIcon(":/img/resource/img/filtros.png"));
+    ui->actionDithering->setIcon(QIcon(":/img/resource/img/dithering.png"));
 }
 
 void MainWindow::showStartAritimeticOptions()
@@ -45,6 +48,14 @@ void MainWindow::showStartAritimeticOptions()
     ui->groupBox_2->setVisible(false);
     selected_aritimethic_image_1 = false;
     selected_aritimethic_image_2 = false;
+}
+
+void MainWindow::showStartDitheringOptions()
+{
+    ui->groupBox_32->setVisible(false);
+    ui->groupBox_33->setVisible(false);
+    ui->groupBox_34->setVisible(false);
+    ui->groupBox_35->setVisible(false);
 }
 
 void MainWindow::inicializarModels(QString dest, QStringList perm)
@@ -69,6 +80,10 @@ void MainWindow::inicializarModels(QString dest, QStringList perm)
     dirmodel_4->setFilter(QDir::NoDotAndDotDot | QDir::AllDirs);
     dirmodel_4->setRootPath(dest);
     ui->treeView_diretorio_imagem_filtro->setModel(dirmodel_4);
+    dirmodel_5 = new QFileSystemModel(this);
+    dirmodel_5->setFilter(QDir::NoDotAndDotDot | QDir::AllDirs);
+    dirmodel_5->setRootPath(dest);
+    ui->treeView_diretorio_imagem_dithering->setModel(dirmodel_5);
 
     filemodel = new QFileSystemModel(this);
     filemodel->setFilter(QDir::NoDotAndDotDot | QDir::Files);
@@ -90,6 +105,10 @@ void MainWindow::inicializarModels(QString dest, QStringList perm)
     filemodel_4->setFilter(QDir::NoDotAndDotDot | QDir::Files);
     filemodel_4->setRootPath(dest);
     ui->listView_arquivo_imagem_filtro->setModel(filemodel_4);
+    filemodel_5 = new QFileSystemModel(this);
+    filemodel_5->setFilter(QDir::NoDotAndDotDot | QDir::Files);
+    filemodel_5->setRootPath(dest);
+    ui->listView_arquivo_imagem_dithering->setModel(filemodel_5);
 
     filemodel->setNameFilters(perm);                                                        //aplica o filtro à lista de arquivos
     filemodel->setNameFilterDisables(false);                                                //aplica o filtro
@@ -101,6 +120,8 @@ void MainWindow::inicializarModels(QString dest, QStringList perm)
     filemodel_3->setNameFilterDisables(false);
     filemodel_4->setNameFilters(perm);
     filemodel_4->setNameFilterDisables(false);
+    filemodel_5->setNameFilters(perm);
+    filemodel_5->setNameFilterDisables(false);
 }
 
 void MainWindow::inicializarValidators()
@@ -373,6 +394,29 @@ void MainWindow::on_actionSalvar_2_triggered()
             QMessageBox::critical(this, "Erro", "Não foi possível salvar a imagem.");
         }
     }
+    if (ui->stackedWidget->currentIndex() == 8) {
+        // Verifica se há imagem processada
+        QPixmap pixmap = ui->label_imagem_dith_modificada->pixmap();
+        if (!pixmap || pixmap.isNull()) {
+            QMessageBox::warning(this, "Nenhuma imagem", "Não há imagem processada para salvar.");
+            return;
+        }
+
+        // Abre diálogo para escolher local e formato
+        QString fileName = QFileDialog::getSaveFileName(this,
+                                                        "Salvar imagem",
+                                                        QDir::homePath(),
+                                                        "Imagens (*.png *.jpg *.bmp)");
+
+        if (fileName.isEmpty())
+            return;
+
+        // Converte para QImage e salva
+        QImage img = pixmap.toImage();
+        if (!img.save(fileName)) {
+            QMessageBox::critical(this, "Erro", "Não foi possível salvar a imagem.");
+        }
+    }
 }
 
 //Fecha o programa
@@ -413,6 +457,13 @@ void MainWindow::on_actionFiltros_triggered()
 {
     setDefaultImages();
     ui->stackedWidget->setCurrentIndex(7);
+}
+
+void MainWindow::on_actionDithering_triggered()
+{
+    setDefaultImages();
+    showStartDitheringOptions();
+    ui->stackedWidget->setCurrentIndex(8);
 }
 
 void MainWindow::on_radioButton_clicked()
@@ -1141,9 +1192,129 @@ void MainWindow::on_pushButton_selecionar_imagem_filtro_clicked()
                              "Selecione um arquivo de imagem válido (jpg, jpeg, png, bmp, tiff).");
     }
 }
+
 void MainWindow::on_pushButton_histograma_4_clicked()
 {
     FormHistograma histograma(ui->label_imagem_filtro_original->pixmap().toImage(), ui->label_imagem_filtro_modificada->pixmap().toImage(), this);
     histograma.exec();
+}
+
+
+void MainWindow::on_checkBox_mais_ruido_stateChanged(int arg1)
+{
+    if(arg1 == Qt::Checked)
+    {
+        ui->checkBox_menos_ruido->setChecked(false);
+    }
+}
+
+
+void MainWindow::on_checkBox_menos_ruido_stateChanged(int arg1)
+{
+    if(arg1 == Qt::Checked)
+    {
+        ui->checkBox_mais_ruido->setChecked(false);
+    }
+}
+
+
+void MainWindow::on_radioButton_floyd_steinberg_clicked()
+{
+    showStartDitheringOptions();
+}
+
+void MainWindow::on_radioButton_burkes_clicked()
+{
+    showStartDitheringOptions();
+}
+
+
+void MainWindow::on_radioButton_jjn_clicked()
+{
+    showStartDitheringOptions();
+}
+
+
+void MainWindow::on_radioButton_sierra_clicked()
+{
+    showStartDitheringOptions();
+}
+
+
+void MainWindow::on_radioButton_stucki_clicked()
+{
+    showStartDitheringOptions();
+}
+
+
+void MainWindow::on_radioButton_atkinson_clicked()
+{
+    showStartDitheringOptions();
+}
+
+
+void MainWindow::on_radioButton_matriz_bayer_clicked()
+{
+    ui->groupBox_32->setVisible(true);
+    ui->groupBox_33->setVisible(false);
+    ui->groupBox_34->setVisible(false);
+    ui->groupBox_35->setVisible(false);
+}
+
+
+void MainWindow::on_radioButton_clustered_clicked()
+{
+    ui->groupBox_32->setVisible(false);
+    ui->groupBox_33->setVisible(false);
+    ui->groupBox_34->setVisible(true);
+    ui->groupBox_35->setVisible(true);
+}
+
+
+void MainWindow::on_radioButton_aleatorio_clicked()
+{
+    ui->groupBox_32->setVisible(false);
+    ui->groupBox_33->setVisible(true);
+    ui->groupBox_34->setVisible(false);
+    ui->groupBox_35->setVisible(false);
+
+}
+
+
+void MainWindow::on_treeView_diretorio_imagem_dithering_clicked(const QModelIndex &index5)
+{
+    QString novocaminho_5 = dirmodel_5->fileInfo(index5).absolutePath();
+    ui->listView_arquivo_imagem_dithering->setRootIndex(filemodel_5->setRootPath(novocaminho_5));
+}
+
+
+void MainWindow::on_pushButton_selecionar_imagem_dithering_clicked()
+{
+    // obtém o índice selecionado no listView
+    QModelIndex index = ui->listView_arquivo_imagem_dithering->currentIndex();
+
+    if (!index.isValid()) {
+        // nada selecionado → não faz nada
+        return;
+    }
+
+    QString caminhoArquivo = filemodel_5->filePath(index);
+
+    // verifica se é um arquivo válido de imagem
+    QFileInfo info(caminhoArquivo);
+    QString ext = info.suffix().toLower();
+    if (ext == "jpg" || ext == "jpeg" || ext == "png" || ext == "bmp" || ext == "tiff") {
+        // carrega no label do índice 0
+        QPixmap pixmap(caminhoArquivo);
+        ui->label_imagem_dith_original->setPixmap(pixmap.scaled(ui->label_imagem_dith_original->size(),
+                                                                  Qt::KeepAspectRatio,
+                                                                  Qt::SmoothTransformation));
+        ui->label_imagem_dith_original->setScaledContents(false);
+    } else {
+        // arquivo não é imagem válida → ignora ou mostra aviso
+        QMessageBox::warning(this,
+                             "Arquivo inválido",
+                             "Selecione um arquivo de imagem válido (jpg, jpeg, png, bmp, tiff).");
+    }
 }
 

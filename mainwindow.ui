@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>620</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>8</number>
     </property>
     <widget class="QWidget" name="quantization">
      <widget class="QLabel" name="label_titulo1">
@@ -593,7 +593,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:700; color:#ff0000;&quot;&gt;PdI&lt;/span&gt;&lt;span style=&quot; font-size:22pt; font-weight:700;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Processamento de Imagens 1.32&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:700; color:#ff0000;&quot;&gt;PdI&lt;/span&gt;&lt;span style=&quot; font-size:22pt; font-weight:700;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Processamento de Imagens 1.4&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
      <widget class="QTextEdit" name="textEdit">
@@ -1854,7 +1854,7 @@ r</string>
           <x>4</x>
           <y>14</y>
           <width>150</width>
-          <height>50</height>
+          <height>41</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_17">
@@ -1903,9 +1903,9 @@ r</string>
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>10</y>
-          <width>57</width>
-          <height>46</height>
+          <y>15</y>
+          <width>51</width>
+          <height>41</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_24">
@@ -2140,6 +2140,586 @@ r</string>
       </widget>
      </widget>
     </widget>
+    <widget class="QWidget" name="page_7">
+     <widget class="QLabel" name="label_titulo1_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>521</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Times New Roman</family>
+        <pointsize>24</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Sunken</enum>
+      </property>
+      <property name="midLineWidth">
+       <number>1</number>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Algoritmos de Dithering&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::TextFormat::RichText</enum>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_27">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>320</y>
+        <width>211</width>
+        <height>221</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Imagem Original</string>
+      </property>
+      <widget class="QLabel" name="label_imagem_dith_original">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>191</width>
+         <height>191</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="resource.qrc">:/img/resource/img/default_img.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_28">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>320</y>
+        <width>211</width>
+        <height>221</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Imagem Modificada</string>
+      </property>
+      <widget class="QLabel" name="label_imagem_dith_modificada">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>191</width>
+         <height>191</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="resource.qrc">:/img/resource/img/default_img.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_29">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>451</width>
+        <height>121</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Algoritmos</string>
+      </property>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>431</width>
+         <height>91</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_18">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_25">
+          <item>
+           <widget class="QRadioButton" name="radioButton_floyd_steinberg">
+            <property name="text">
+             <string>Floyd–Steinberg</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radioButton_burkes">
+            <property name="text">
+             <string>Burkes</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radioButton_jjn">
+            <property name="text">
+             <string>Jarvis–Judice–Ninke</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radioButton_sierra">
+            <property name="text">
+             <string>Sierra</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_26">
+          <item>
+           <widget class="QRadioButton" name="radioButton_atkinson">
+            <property name="text">
+             <string>Atkinson</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radioButton_stucki">
+            <property name="text">
+             <string>Stucki</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radioButton_matriz_bayer">
+            <property name="text">
+             <string>Matriz de Bayer</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radioButton_clustered">
+            <property name="text">
+             <string>Clustered Dot Dithering</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="radioButton_aleatorio">
+          <property name="text">
+           <string>Dithering aleatório</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_30">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>180</y>
+        <width>101</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Níveis de Cinza</string>
+      </property>
+      <widget class="QComboBox" name="comboBox_niveis_cinza">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>81</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>8</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>16</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>32</string>
+        </property>
+       </item>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_31">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>180</y>
+        <width>101</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Resolução</string>
+      </property>
+      <widget class="QComboBox" name="comboBox_resolution">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>81</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>original</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>64</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>128</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>256</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>512</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1024</string>
+        </property>
+       </item>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_32">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>230</y>
+        <width>101</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string> Matriz Size</string>
+      </property>
+      <widget class="QComboBox" name="comboBox_matriz_size">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>81</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>2 x 2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4 x 4</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>8 x 8</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>16 x 16</string>
+        </property>
+       </item>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_33">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>230</y>
+        <width>211</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Ruído</string>
+      </property>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>8</x>
+         <y>20</y>
+         <width>191</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_19">
+        <item>
+         <widget class="QCheckBox" name="checkBox_mais_ruido">
+          <property name="text">
+           <string>Mais ruído</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBox_menos_ruido">
+          <property name="text">
+           <string>Menos ruído</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_34">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>180</y>
+        <width>101</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Clusters Size</string>
+      </property>
+      <widget class="QComboBox" name="comboBox_cluster_size">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>81</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>3 x 3</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>5 x 5</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>7 x 7</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>9 x 9</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>11 x 11</string>
+        </property>
+       </item>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_35">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>180</y>
+        <width>121</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Forma dos Pontos</string>
+      </property>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>101</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_29">
+        <item>
+         <widget class="QRadioButton" name="radioButton_ponto_circular">
+          <property name="text">
+           <string>Circular</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="radioButton_ponto_quadrado">
+          <property name="text">
+           <string>Quadrado</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="radioButton_ponto_eliptico">
+          <property name="text">
+           <string>Elíptico</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="radioButton_ponto_linha_trama">
+          <property name="text">
+           <string>Linha/Trama</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="layoutWidget_8">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>70</y>
+        <width>291</width>
+        <height>216</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_30">
+       <item>
+        <widget class="QLabel" name="label_diretorio_imagem_geometrica_3">
+         <property name="text">
+          <string>Diretório:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTreeView" name="treeView_diretorio_imagem_dithering"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="layoutWidget_9">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>320</y>
+        <width>291</width>
+        <height>216</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_31">
+       <item>
+        <widget class="QLabel" name="label_arquivo_imagem_geometrica_3">
+         <property name="text">
+          <string>Arquivo</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QListView" name="listView_arquivo_imagem_dithering"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QPushButton" name="pushButton_selecionar_imagem_dithering">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>40</y>
+        <width>101</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Selecionar</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>290</y>
+        <width>451</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_20">
+       <item>
+        <widget class="QCheckBox" name="checkBox_pre_processamento">
+         <property name="text">
+          <string>Pré-processamento</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_histograma_dith">
+         <property name="text">
+          <string>HISTOGRAMA</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_aplicar_dith">
+         <property name="text">
+          <string>APLICAR</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -2172,6 +2752,7 @@ r</string>
     <addaction name="actionAritimetica"/>
     <addaction name="actionGeometrica"/>
     <addaction name="actionFiltros"/>
+    <addaction name="actionDithering"/>
    </widget>
    <addaction name="menuArquivo"/>
    <addaction name="menuFerramentas"/>
@@ -2248,6 +2829,11 @@ r</string>
   <action name="actionFiltros">
    <property name="text">
     <string>Filtros</string>
+   </property>
+  </action>
+  <action name="actionDithering">
+   <property name="text">
+    <string>Dithering</string>
    </property>
   </action>
  </widget>

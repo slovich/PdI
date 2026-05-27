@@ -31,6 +31,7 @@ private slots:
     void showMaxMinOptions(bool show);
     void showGausianOptions(bool show);
     void showStartAritimeticOptions();
+    void showStartDitheringOptions();
     void on_pushButton_selecionar_clicked();                                            //Método ao se clicar no botão de selecionar após escolher uma imagem
     void on_pushButton_procurar_clicked();                                              //Método ao se clicar no botão de procurar imagem
     void on_treeView_dir_clicked(const QModelIndex & index);                            //Método que atualiza o diretrio de exibição da lista de arquivos quando há mudança na árvore de diretórios.
@@ -51,6 +52,7 @@ private slots:
     void on_actionAritimetica_triggered();
     void on_actionGeometrica_triggered();
     void on_actionFiltros_triggered();
+    void on_actionDithering_triggered();
     void on_radioButton_clicked();
     void on_radioButton_2_clicked();
     void on_radioButton_3_clicked();
@@ -78,11 +80,26 @@ private slots:
     void on_radioButton_filtro_maximo_clicked();
     void on_radioButton_filtro_minimo_clicked();
     void on_radioButton_filtro_gausiano_clicked();
+    void on_checkBox_mais_ruido_stateChanged(int arg1);
+    void on_checkBox_menos_ruido_stateChanged(int arg1);
+    void on_radioButton_floyd_steinberg_clicked();
+    void on_radioButton_burkes_clicked();
+    void on_radioButton_jjn_clicked();
+    void on_radioButton_sierra_clicked();
+    void on_radioButton_stucki_clicked();
+    void on_radioButton_atkinson_clicked();
+    void on_radioButton_matriz_bayer_clicked();
+    void on_radioButton_clustered_clicked();
+    void on_radioButton_aleatorio_clicked();
+
+    void on_treeView_diretorio_imagem_dithering_clicked(const QModelIndex &index);
+
+    void on_pushButton_selecionar_imagem_dithering_clicked();
 
 private:
     Ui::MainWindow *ui;
-    QFileSystemModel *dirmodel, *dirmodel_1, *dirmodel_2, *dirmodel_3, *dirmodel_4;
-    QFileSystemModel *filemodel, *filemodel_1, *filemodel_2, *filemodel_3, *filemodel_4;
+    QFileSystemModel *dirmodel, *dirmodel_1, *dirmodel_2, *dirmodel_3, *dirmodel_4, *dirmodel_5;
+    QFileSystemModel *filemodel, *filemodel_1, *filemodel_2, *filemodel_3, *filemodel_4, *filemodel_5;
     QIntValidator *validator, *validator_3;
     QDoubleValidator *validator_2;
     bool selected_aritimethic_image_1, selected_aritimethic_image_2;

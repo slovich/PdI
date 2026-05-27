@@ -9,5 +9,6 @@
         <file>resource/img/ico_mainwindow.ico</file>
         <file>resource/img/geometrica.png</file>
         <file>resource/img/filtros.png</file>
+        <file>resource/img/dithering.png</file>
     </qresource>
 </RCC>

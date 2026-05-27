@@ -272,7 +272,7 @@ public:
     QGroupBox *groupBox_28;
     QLabel *label_imagem_dith_modificada;
     QGroupBox *groupBox_29;
-    QWidget *widget;
+    QWidget *layoutWidget16;
     QHBoxLayout *horizontalLayout_18;
     QVBoxLayout *verticalLayout_25;
     QRadioButton *radioButton_floyd_steinberg;
@@ -292,14 +292,14 @@ public:
     QGroupBox *groupBox_32;
     QComboBox *comboBox_matriz_size;
     QGroupBox *groupBox_33;
-    QWidget *widget1;
+    QWidget *layoutWidget17;
     QHBoxLayout *horizontalLayout_19;
     QCheckBox *checkBox_mais_ruido;
     QCheckBox *checkBox_menos_ruido;
     QGroupBox *groupBox_34;
     QComboBox *comboBox_cluster_size;
     QGroupBox *groupBox_35;
-    QWidget *widget2;
+    QWidget *layoutWidget18;
     QVBoxLayout *verticalLayout_29;
     QRadioButton *radioButton_ponto_circular;
     QRadioButton *radioButton_ponto_quadrado;
@@ -314,7 +314,7 @@ public:
     QLabel *label_arquivo_imagem_geometrica_3;
     QListView *listView_arquivo_imagem_dithering;
     QPushButton *pushButton_selecionar_imagem_dithering;
-    QWidget *widget3;
+    QWidget *layoutWidget19;
     QHBoxLayout *horizontalLayout_20;
     QCheckBox *checkBox_pre_processamento;
     QPushButton *pushButton_histograma_dith;
@@ -1175,7 +1175,7 @@ public:
         groupBox_23->setGeometry(QRect(120, 160, 211, 61));
         layoutWidget14 = new QWidget(groupBox_23);
         layoutWidget14->setObjectName("layoutWidget14");
-        layoutWidget14->setGeometry(QRect(4, 14, 150, 41));
+        layoutWidget14->setGeometry(QRect(4, 14, 150, 50));
         horizontalLayout_17 = new QHBoxLayout(layoutWidget14);
         horizontalLayout_17->setObjectName("horizontalLayout_17");
         horizontalLayout_17->setContentsMargins(0, 0, 0, 0);
@@ -1212,7 +1212,7 @@ public:
 
         layoutWidget15 = new QWidget(groupBox_23);
         layoutWidget15->setObjectName("layoutWidget15");
-        layoutWidget15->setGeometry(QRect(160, 15, 51, 41));
+        layoutWidget15->setGeometry(QRect(160, 15, 57, 46));
         verticalLayout_24 = new QVBoxLayout(layoutWidget15);
         verticalLayout_24->setObjectName("verticalLayout_24");
         verticalLayout_24->setContentsMargins(0, 0, 0, 0);
@@ -1330,31 +1330,31 @@ public:
         groupBox_29 = new QGroupBox(page_7);
         groupBox_29->setObjectName("groupBox_29");
         groupBox_29->setGeometry(QRect(10, 60, 451, 121));
-        widget = new QWidget(groupBox_29);
-        widget->setObjectName("widget");
-        widget->setGeometry(QRect(10, 20, 431, 91));
-        horizontalLayout_18 = new QHBoxLayout(widget);
+        layoutWidget16 = new QWidget(groupBox_29);
+        layoutWidget16->setObjectName("layoutWidget16");
+        layoutWidget16->setGeometry(QRect(10, 20, 431, 102));
+        horizontalLayout_18 = new QHBoxLayout(layoutWidget16);
         horizontalLayout_18->setObjectName("horizontalLayout_18");
         horizontalLayout_18->setContentsMargins(0, 0, 0, 0);
         verticalLayout_25 = new QVBoxLayout();
         verticalLayout_25->setObjectName("verticalLayout_25");
-        radioButton_floyd_steinberg = new QRadioButton(widget);
+        radioButton_floyd_steinberg = new QRadioButton(layoutWidget16);
         radioButton_floyd_steinberg->setObjectName("radioButton_floyd_steinberg");
         radioButton_floyd_steinberg->setChecked(true);
 
         verticalLayout_25->addWidget(radioButton_floyd_steinberg);
 
-        radioButton_burkes = new QRadioButton(widget);
+        radioButton_burkes = new QRadioButton(layoutWidget16);
         radioButton_burkes->setObjectName("radioButton_burkes");
 
         verticalLayout_25->addWidget(radioButton_burkes);
 
-        radioButton_jjn = new QRadioButton(widget);
+        radioButton_jjn = new QRadioButton(layoutWidget16);
         radioButton_jjn->setObjectName("radioButton_jjn");
 
         verticalLayout_25->addWidget(radioButton_jjn);
 
-        radioButton_sierra = new QRadioButton(widget);
+        radioButton_sierra = new QRadioButton(layoutWidget16);
         radioButton_sierra->setObjectName("radioButton_sierra");
 
         verticalLayout_25->addWidget(radioButton_sierra);
@@ -1364,22 +1364,22 @@ public:
 
         verticalLayout_26 = new QVBoxLayout();
         verticalLayout_26->setObjectName("verticalLayout_26");
-        radioButton_atkinson = new QRadioButton(widget);
+        radioButton_atkinson = new QRadioButton(layoutWidget16);
         radioButton_atkinson->setObjectName("radioButton_atkinson");
 
         verticalLayout_26->addWidget(radioButton_atkinson);
 
-        radioButton_stucki = new QRadioButton(widget);
+        radioButton_stucki = new QRadioButton(layoutWidget16);
         radioButton_stucki->setObjectName("radioButton_stucki");
 
         verticalLayout_26->addWidget(radioButton_stucki);
 
-        radioButton_matriz_bayer = new QRadioButton(widget);
+        radioButton_matriz_bayer = new QRadioButton(layoutWidget16);
         radioButton_matriz_bayer->setObjectName("radioButton_matriz_bayer");
 
         verticalLayout_26->addWidget(radioButton_matriz_bayer);
 
-        radioButton_clustered = new QRadioButton(widget);
+        radioButton_clustered = new QRadioButton(layoutWidget16);
         radioButton_clustered->setObjectName("radioButton_clustered");
         radioButton_clustered->setCheckable(true);
         radioButton_clustered->setChecked(false);
@@ -1389,7 +1389,7 @@ public:
 
         horizontalLayout_18->addLayout(verticalLayout_26);
 
-        radioButton_aleatorio = new QRadioButton(widget);
+        radioButton_aleatorio = new QRadioButton(layoutWidget16);
         radioButton_aleatorio->setObjectName("radioButton_aleatorio");
 
         horizontalLayout_18->addWidget(radioButton_aleatorio);
@@ -1430,18 +1430,18 @@ public:
         groupBox_33 = new QGroupBox(page_7);
         groupBox_33->setObjectName("groupBox_33");
         groupBox_33->setGeometry(QRect(120, 230, 211, 51));
-        widget1 = new QWidget(groupBox_33);
-        widget1->setObjectName("widget1");
-        widget1->setGeometry(QRect(8, 20, 191, 22));
-        horizontalLayout_19 = new QHBoxLayout(widget1);
+        layoutWidget17 = new QWidget(groupBox_33);
+        layoutWidget17->setObjectName("layoutWidget17");
+        layoutWidget17->setGeometry(QRect(8, 20, 191, 22));
+        horizontalLayout_19 = new QHBoxLayout(layoutWidget17);
         horizontalLayout_19->setObjectName("horizontalLayout_19");
         horizontalLayout_19->setContentsMargins(0, 0, 0, 0);
-        checkBox_mais_ruido = new QCheckBox(widget1);
+        checkBox_mais_ruido = new QCheckBox(layoutWidget17);
         checkBox_mais_ruido->setObjectName("checkBox_mais_ruido");
 
         horizontalLayout_19->addWidget(checkBox_mais_ruido);
 
-        checkBox_menos_ruido = new QCheckBox(widget1);
+        checkBox_menos_ruido = new QCheckBox(layoutWidget17);
         checkBox_menos_ruido->setObjectName("checkBox_menos_ruido");
 
         horizontalLayout_19->addWidget(checkBox_menos_ruido);
@@ -1460,28 +1460,28 @@ public:
         groupBox_35 = new QGroupBox(page_7);
         groupBox_35->setObjectName("groupBox_35");
         groupBox_35->setGeometry(QRect(340, 180, 121, 101));
-        widget2 = new QWidget(groupBox_35);
-        widget2->setObjectName("widget2");
-        widget2->setGeometry(QRect(10, 20, 101, 71));
-        verticalLayout_29 = new QVBoxLayout(widget2);
+        layoutWidget18 = new QWidget(groupBox_35);
+        layoutWidget18->setObjectName("layoutWidget18");
+        layoutWidget18->setGeometry(QRect(10, 20, 101, 100));
+        verticalLayout_29 = new QVBoxLayout(layoutWidget18);
         verticalLayout_29->setObjectName("verticalLayout_29");
         verticalLayout_29->setContentsMargins(0, 0, 0, 0);
-        radioButton_ponto_circular = new QRadioButton(widget2);
+        radioButton_ponto_circular = new QRadioButton(layoutWidget18);
         radioButton_ponto_circular->setObjectName("radioButton_ponto_circular");
 
         verticalLayout_29->addWidget(radioButton_ponto_circular);
 
-        radioButton_ponto_quadrado = new QRadioButton(widget2);
+        radioButton_ponto_quadrado = new QRadioButton(layoutWidget18);
         radioButton_ponto_quadrado->setObjectName("radioButton_ponto_quadrado");
 
         verticalLayout_29->addWidget(radioButton_ponto_quadrado);
 
-        radioButton_ponto_eliptico = new QRadioButton(widget2);
+        radioButton_ponto_eliptico = new QRadioButton(layoutWidget18);
         radioButton_ponto_eliptico->setObjectName("radioButton_ponto_eliptico");
 
         verticalLayout_29->addWidget(radioButton_ponto_eliptico);
 
-        radioButton_ponto_linha_trama = new QRadioButton(widget2);
+        radioButton_ponto_linha_trama = new QRadioButton(layoutWidget18);
         radioButton_ponto_linha_trama->setObjectName("radioButton_ponto_linha_trama");
 
         verticalLayout_29->addWidget(radioButton_ponto_linha_trama);
@@ -1521,23 +1521,23 @@ public:
         pushButton_selecionar_imagem_dithering = new QPushButton(page_7);
         pushButton_selecionar_imagem_dithering->setObjectName("pushButton_selecionar_imagem_dithering");
         pushButton_selecionar_imagem_dithering->setGeometry(QRect(670, 40, 101, 24));
-        widget3 = new QWidget(page_7);
-        widget3->setObjectName("widget3");
-        widget3->setGeometry(QRect(10, 290, 451, 26));
-        horizontalLayout_20 = new QHBoxLayout(widget3);
+        layoutWidget19 = new QWidget(page_7);
+        layoutWidget19->setObjectName("layoutWidget19");
+        layoutWidget19->setGeometry(QRect(10, 290, 451, 26));
+        horizontalLayout_20 = new QHBoxLayout(layoutWidget19);
         horizontalLayout_20->setObjectName("horizontalLayout_20");
         horizontalLayout_20->setContentsMargins(0, 0, 0, 0);
-        checkBox_pre_processamento = new QCheckBox(widget3);
+        checkBox_pre_processamento = new QCheckBox(layoutWidget19);
         checkBox_pre_processamento->setObjectName("checkBox_pre_processamento");
 
         horizontalLayout_20->addWidget(checkBox_pre_processamento);
 
-        pushButton_histograma_dith = new QPushButton(widget3);
+        pushButton_histograma_dith = new QPushButton(layoutWidget19);
         pushButton_histograma_dith->setObjectName("pushButton_histograma_dith");
 
         horizontalLayout_20->addWidget(pushButton_histograma_dith);
 
-        pushButton_aplicar_dith = new QPushButton(widget3);
+        pushButton_aplicar_dith = new QPushButton(layoutWidget19);
         pushButton_aplicar_dith->setObjectName("pushButton_aplicar_dith");
 
         horizontalLayout_20->addWidget(pushButton_aplicar_dith);
@@ -1815,6 +1815,9 @@ public:
         label_diretorio_imagem_geometrica_3->setText(QCoreApplication::translate("MainWindow", "Diret\303\263rio:", nullptr));
         label_arquivo_imagem_geometrica_3->setText(QCoreApplication::translate("MainWindow", "Arquivo", nullptr));
         pushButton_selecionar_imagem_dithering->setText(QCoreApplication::translate("MainWindow", "Selecionar", nullptr));
+#if QT_CONFIG(tooltip)
+        checkBox_pre_processamento->setToolTip(QCoreApplication::translate("MainWindow", "Aplica suaviza\303\247\303\243o gaussiana, ajuste de contraste e mormaliza\303\247\303\243o do histograma", nullptr));
+#endif // QT_CONFIG(tooltip)
         checkBox_pre_processamento->setText(QCoreApplication::translate("MainWindow", "Pr\303\251-processamento", nullptr));
         pushButton_histograma_dith->setText(QCoreApplication::translate("MainWindow", "HISTOGRAMA", nullptr));
         pushButton_aplicar_dith->setText(QCoreApplication::translate("MainWindow", "APLICAR", nullptr));

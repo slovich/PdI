@@ -33,6 +33,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         filtroimagem.h filtroimagem.cpp
         formhistograma.h formhistograma.cpp formhistograma.ui
         histogramaimagem.h histogramaimagem.cpp
+        dithering.h dithering.cpp
     )
 
 

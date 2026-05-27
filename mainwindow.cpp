@@ -5,6 +5,7 @@
 #include "quantizacao.h"
 #include "transformacaogeometrica.h"
 #include "filtroimagem.h"
+#include "dithering.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -1316,5 +1317,48 @@ void MainWindow::on_pushButton_selecionar_imagem_dithering_clicked()
                              "Arquivo inválido",
                              "Selecione um arquivo de imagem válido (jpg, jpeg, png, bmp, tiff).");
     }
+}
+
+
+void MainWindow::on_pushButton_aplicar_dith_clicked()
+{
+    Dithering *algoritmo = new Dithering;
+    QImage imagem, resultado;
+    int resolucao;
+
+    //Verifica se o préprocessamento foi selecionado
+    if(ui->checkBox_pre_processamento->isChecked())
+    {
+        imagem = algoritmo->preprocessamento(ui->label_imagem_dith_original->pixmap().toImage(),true, true, true);
+    }
+    else
+    {
+        imagem = ui->label_imagem_dith_original->pixmap().toImage();
+    }
+
+    //Verifica o parâmetro de transformação de resolução da imagem foi selecionado
+    //O valor original mantém a resulução da imagem original
+    if(ui->comboBox_resolution->currentIndex() == 0)
+    {
+        resolucao = 0;
+    }
+    else
+    {
+        resolucao = ui->comboBox_resolution->currentData().toInt();
+    }
+
+    //Verifica o algoritmo selecionado e aplica à imagem
+    //Se for o algoritmo de Floyd-Steinberg
+    if(ui->radioButton_floyd_steinberg->isChecked())
+    {
+        resultado = algoritmo->floydSteinberg(imagem, ui->comboBox_niveis_cinza->currentData().toInt(), resolucao);
+    }
+
+    //Aplica o resultado no label de imagem modificada
+    ui->label_imagem_dith_modificada->setPixmap(
+        QPixmap::fromImage(resultado).scaled(ui->label_imagem_dith_modificada->size(),
+                                             Qt::KeepAspectRatio,
+                                             Qt::SmoothTransformation));
+    ui->label_imagem_dith_modificada->setScaledContents(false);
 }
 

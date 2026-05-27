@@ -278,13 +278,16 @@ public:
     QRadioButton *radioButton_floyd_steinberg;
     QRadioButton *radioButton_burkes;
     QRadioButton *radioButton_jjn;
-    QRadioButton *radioButton_sierra;
+    QRadioButton *radioButton_aleatorio;
     QVBoxLayout *verticalLayout_26;
     QRadioButton *radioButton_atkinson;
     QRadioButton *radioButton_stucki;
     QRadioButton *radioButton_matriz_bayer;
     QRadioButton *radioButton_clustered;
-    QRadioButton *radioButton_aleatorio;
+    QVBoxLayout *verticalLayout_27;
+    QRadioButton *radioButton_sierra1;
+    QRadioButton *radioButton_sierra2;
+    QRadioButton *radioButton_sierra3;
     QGroupBox *groupBox_30;
     QComboBox *comboBox_niveis_cinza;
     QGroupBox *groupBox_31;
@@ -1354,10 +1357,10 @@ public:
 
         verticalLayout_25->addWidget(radioButton_jjn);
 
-        radioButton_sierra = new QRadioButton(layoutWidget16);
-        radioButton_sierra->setObjectName("radioButton_sierra");
+        radioButton_aleatorio = new QRadioButton(layoutWidget16);
+        radioButton_aleatorio->setObjectName("radioButton_aleatorio");
 
-        verticalLayout_25->addWidget(radioButton_sierra);
+        verticalLayout_25->addWidget(radioButton_aleatorio);
 
 
         horizontalLayout_18->addLayout(verticalLayout_25);
@@ -1389,10 +1392,25 @@ public:
 
         horizontalLayout_18->addLayout(verticalLayout_26);
 
-        radioButton_aleatorio = new QRadioButton(layoutWidget16);
-        radioButton_aleatorio->setObjectName("radioButton_aleatorio");
+        verticalLayout_27 = new QVBoxLayout();
+        verticalLayout_27->setObjectName("verticalLayout_27");
+        radioButton_sierra1 = new QRadioButton(layoutWidget16);
+        radioButton_sierra1->setObjectName("radioButton_sierra1");
 
-        horizontalLayout_18->addWidget(radioButton_aleatorio);
+        verticalLayout_27->addWidget(radioButton_sierra1);
+
+        radioButton_sierra2 = new QRadioButton(layoutWidget16);
+        radioButton_sierra2->setObjectName("radioButton_sierra2");
+
+        verticalLayout_27->addWidget(radioButton_sierra2);
+
+        radioButton_sierra3 = new QRadioButton(layoutWidget16);
+        radioButton_sierra3->setObjectName("radioButton_sierra3");
+
+        verticalLayout_27->addWidget(radioButton_sierra3);
+
+
+        horizontalLayout_18->addLayout(verticalLayout_27);
 
         groupBox_30 = new QGroupBox(page_7);
         groupBox_30->setObjectName("groupBox_30");
@@ -1462,12 +1480,13 @@ public:
         groupBox_35->setGeometry(QRect(340, 180, 121, 101));
         layoutWidget18 = new QWidget(groupBox_35);
         layoutWidget18->setObjectName("layoutWidget18");
-        layoutWidget18->setGeometry(QRect(10, 20, 101, 100));
+        layoutWidget18->setGeometry(QRect(10, 20, 101, 71));
         verticalLayout_29 = new QVBoxLayout(layoutWidget18);
         verticalLayout_29->setObjectName("verticalLayout_29");
         verticalLayout_29->setContentsMargins(0, 0, 0, 0);
         radioButton_ponto_circular = new QRadioButton(layoutWidget18);
         radioButton_ponto_circular->setObjectName("radioButton_ponto_circular");
+        radioButton_ponto_circular->setChecked(true);
 
         verticalLayout_29->addWidget(radioButton_ponto_circular);
 
@@ -1770,12 +1789,14 @@ public:
         radioButton_floyd_steinberg->setText(QCoreApplication::translate("MainWindow", "Floyd\342\200\223Steinberg", nullptr));
         radioButton_burkes->setText(QCoreApplication::translate("MainWindow", "Burkes", nullptr));
         radioButton_jjn->setText(QCoreApplication::translate("MainWindow", "Jarvis\342\200\223Judice\342\200\223Ninke", nullptr));
-        radioButton_sierra->setText(QCoreApplication::translate("MainWindow", "Sierra", nullptr));
+        radioButton_aleatorio->setText(QCoreApplication::translate("MainWindow", "Dithering aleat\303\263rio", nullptr));
         radioButton_atkinson->setText(QCoreApplication::translate("MainWindow", "Atkinson", nullptr));
         radioButton_stucki->setText(QCoreApplication::translate("MainWindow", "Stucki", nullptr));
         radioButton_matriz_bayer->setText(QCoreApplication::translate("MainWindow", "Matriz de Bayer", nullptr));
         radioButton_clustered->setText(QCoreApplication::translate("MainWindow", "Clustered Dot Dithering", nullptr));
-        radioButton_aleatorio->setText(QCoreApplication::translate("MainWindow", "Dithering aleat\303\263rio", nullptr));
+        radioButton_sierra1->setText(QCoreApplication::translate("MainWindow", "Sierra ", nullptr));
+        radioButton_sierra2->setText(QCoreApplication::translate("MainWindow", "Sierra 2", nullptr));
+        radioButton_sierra3->setText(QCoreApplication::translate("MainWindow", "Sierra 3", nullptr));
         groupBox_30->setTitle(QCoreApplication::translate("MainWindow", "N\303\255veis de Cinza", nullptr));
         comboBox_niveis_cinza->setItemText(0, QCoreApplication::translate("MainWindow", "2", nullptr));
         comboBox_niveis_cinza->setItemText(1, QCoreApplication::translate("MainWindow", "4", nullptr));

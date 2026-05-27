@@ -85,18 +85,18 @@ private slots:
     void on_radioButton_floyd_steinberg_clicked();
     void on_radioButton_burkes_clicked();
     void on_radioButton_jjn_clicked();
-    void on_radioButton_sierra_clicked();
+    void on_radioButton_sierra1_clicked();
+    void on_radioButton_sierra2_clicked();
+    void on_radioButton_sierra3_clicked();
     void on_radioButton_stucki_clicked();
     void on_radioButton_atkinson_clicked();
     void on_radioButton_matriz_bayer_clicked();
     void on_radioButton_clustered_clicked();
     void on_radioButton_aleatorio_clicked();
-
     void on_treeView_diretorio_imagem_dithering_clicked(const QModelIndex &index);
-
     void on_pushButton_selecionar_imagem_dithering_clicked();
-
     void on_pushButton_aplicar_dith_clicked();
+    void on_pushButton_histograma_dith_clicked();
 
 private:
     Ui::MainWindow *ui;

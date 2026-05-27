@@ -1236,11 +1236,20 @@ void MainWindow::on_radioButton_jjn_clicked()
 }
 
 
-void MainWindow::on_radioButton_sierra_clicked()
+void MainWindow::on_radioButton_sierra1_clicked()
 {
     showStartDitheringOptions();
 }
 
+void MainWindow::on_radioButton_sierra2_clicked()
+{
+    showStartDitheringOptions();
+}
+
+void MainWindow::on_radioButton_sierra3_clicked()
+{
+    showStartDitheringOptions();
+}
 
 void MainWindow::on_radioButton_stucki_clicked()
 {
@@ -1344,14 +1353,136 @@ void MainWindow::on_pushButton_aplicar_dith_clicked()
     }
     else
     {
-        resolucao = ui->comboBox_resolution->currentData().toInt();
+        resolucao = ui->comboBox_resolution->currentText().toInt();
     }
 
     //Verifica o algoritmo selecionado e aplica à imagem
     //Se for o algoritmo de Floyd-Steinberg
     if(ui->radioButton_floyd_steinberg->isChecked())
     {
-        resultado = algoritmo->floydSteinberg(imagem, ui->comboBox_niveis_cinza->currentData().toInt(), resolucao);
+        resultado = algoritmo->floydSteinberg(imagem, ui->comboBox_niveis_cinza->currentText().toInt(), resolucao);
+    }
+
+    //Se for o algoritmo de Burkes
+    if(ui->radioButton_burkes->isChecked())
+    {
+        resultado = algoritmo->burkes(imagem, ui->comboBox_niveis_cinza->currentText().toInt(), resolucao);
+    }
+
+    //Se for o algoritmo de Jardice-Judice-Ninke
+    if(ui->radioButton_jjn->isChecked())
+    {
+        resultado = algoritmo->jarvisJudiceNinke(imagem, ui->comboBox_niveis_cinza->currentText().toInt(), resolucao);
+    }
+
+    //Se for o algoritmo de Stucki
+    if(ui->radioButton_stucki->isChecked())
+    {
+        resultado = algoritmo->stucki(imagem, ui->comboBox_niveis_cinza->currentText().toInt(), resolucao);
+    }
+
+    //Se for o algoritmo de Atkinson
+    if(ui->radioButton_atkinson->isChecked())
+    {
+        resultado = algoritmo->atkinson(imagem, ui->comboBox_niveis_cinza->currentText().toInt(), resolucao);
+    }
+
+    //Se for o algoritmo de Sierra
+    if(ui->radioButton_sierra1->isChecked())
+    {
+        resultado = algoritmo->sierra0(imagem, ui->comboBox_niveis_cinza->currentText().toInt(), resolucao);
+    }
+
+    //Se for o algoritmo de Sierra2
+    if(ui->radioButton_sierra2->isChecked())
+    {
+        resultado = algoritmo->sierra1(imagem, ui->comboBox_niveis_cinza->currentText().toInt(), resolucao);
+    }
+
+    //Se for o algoritmo de Sierra3
+    if(ui->radioButton_sierra3->isChecked())
+    {
+        resultado = algoritmo->sierra2(imagem, ui->comboBox_niveis_cinza->currentText().toInt(), resolucao);
+    }
+
+    //Se for o algoritmo de Matriz de Bayer
+    if(ui->radioButton_matriz_bayer->isChecked())
+    {
+        int matriz = 0;
+        if(ui->comboBox_matriz_size->currentText() == "2 x 2")
+        {
+            matriz = 2;
+        }
+        if(ui->comboBox_matriz_size->currentText() == "4 x 4")
+        {
+            matriz = 4;
+        }
+        if(ui->comboBox_matriz_size->currentText() == "8 x 8")
+        {
+            matriz = 8;
+        }
+        if(ui->comboBox_matriz_size->currentText() == "16 x 16")
+        {
+            matriz = 16;
+        }
+        resultado = algoritmo->bayerMatrix(imagem, ui->comboBox_niveis_cinza->currentText().toInt(), resolucao, matriz);
+    }
+
+        //Se for o algoritmo de Clustered Dot Dithering
+        if(ui->radioButton_clustered->isChecked())
+    {
+        int cluster, forma;
+        if(ui->comboBox_cluster_size->currentText() == "3 x 3")
+        {
+            cluster = 3;
+        }
+        if(ui->comboBox_cluster_size->currentText() == "5 x 5")
+        {
+            cluster = 5;
+        }
+        if(ui->comboBox_cluster_size->currentText() == "7 x 7")
+        {
+            cluster = 7;
+        }
+        if(ui->comboBox_cluster_size->currentText() == "9 x 9")
+        {
+            cluster = 9;
+        }
+        if(ui->comboBox_cluster_size->currentText() == "11 x 11")
+        {
+            cluster = 11;
+        }
+        if(ui->radioButton_ponto_circular->isChecked())
+        {
+            forma = 0;
+        }
+        if(ui->radioButton_ponto_quadrado->isChecked())
+        {
+            forma = 1;
+        }
+        if(ui->radioButton_ponto_eliptico->isChecked())
+        {
+            forma = 2;
+        }
+        if(ui->radioButton_ponto_linha_trama->isChecked())
+        {
+            forma = 3;
+        }
+        resultado = algoritmo->clusteredDot(imagem, ui->comboBox_niveis_cinza->currentText().toInt(), resolucao, cluster, forma);
+    }
+    //Se for o algoritmo de Dithering Aleatório
+    if(ui->radioButton_aleatorio->isChecked())
+    {
+        int ruido = 0;
+        if(ui->checkBox_menos_ruido->isChecked())
+        {
+            ruido = -1;
+        }
+        if(ui->checkBox_mais_ruido->isChecked())
+        {
+            ruido = 1;
+        }
+        resultado = algoritmo->randomDithering(imagem, ui->comboBox_niveis_cinza->currentText().toInt(), resolucao, ruido);
     }
 
     //Aplica o resultado no label de imagem modificada
@@ -1360,5 +1491,11 @@ void MainWindow::on_pushButton_aplicar_dith_clicked()
                                              Qt::KeepAspectRatio,
                                              Qt::SmoothTransformation));
     ui->label_imagem_dith_modificada->setScaledContents(false);
+}
+
+void MainWindow::on_pushButton_histograma_dith_clicked()
+{
+    FormHistograma histograma(ui->label_imagem_dith_original->pixmap().toImage(), ui->label_imagem_dith_modificada->pixmap().toImage(), this);
+    histograma.exec();
 }
 

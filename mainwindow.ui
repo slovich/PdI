@@ -2289,9 +2289,9 @@ r</string>
            </widget>
           </item>
           <item>
-           <widget class="QRadioButton" name="radioButton_sierra">
+           <widget class="QRadioButton" name="radioButton_aleatorio">
             <property name="text">
-             <string>Sierra</string>
+             <string>Dithering aleatório</string>
             </property>
            </widget>
           </item>
@@ -2336,11 +2336,29 @@ r</string>
          </layout>
         </item>
         <item>
-         <widget class="QRadioButton" name="radioButton_aleatorio">
-          <property name="text">
-           <string>Dithering aleatório</string>
-          </property>
-         </widget>
+         <layout class="QVBoxLayout" name="verticalLayout_27">
+          <item>
+           <widget class="QRadioButton" name="radioButton_sierra1">
+            <property name="text">
+             <string>Sierra </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radioButton_sierra2">
+            <property name="text">
+             <string>Sierra 2</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radioButton_sierra3">
+            <property name="text">
+             <string>Sierra 3</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -2594,7 +2612,7 @@ r</string>
          <x>10</x>
          <y>20</y>
          <width>101</width>
-         <height>100</height>
+         <height>71</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -2602,6 +2620,9 @@ r</string>
          <widget class="QRadioButton" name="radioButton_ponto_circular">
           <property name="text">
            <string>Circular</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
